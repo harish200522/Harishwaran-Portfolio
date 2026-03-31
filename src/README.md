@@ -14,7 +14,7 @@ This is my personal portfolio website showcasing my projects, skills, and experi
 * HTML, CSS, JavaScript
 * React (Vite)
 
-## 🔗 Live Demo
+## 🔗 Live Link
 
 https://harishwaran-portfolio.vercel.app/
 
