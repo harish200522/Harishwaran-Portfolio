@@ -249,7 +249,7 @@ const CertificateCard = ({ title, score, icon: Icon }) => (
         </p>
       </div>
     </div>
-    <div className="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+    <div className="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-    git push --force origin main20 transition-opacity">
       <Award size={100} />
     </div>
   </motion.div>
