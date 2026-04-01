@@ -99,7 +99,9 @@ const TypingEffect = ({ words }) => {
   );
 };
 
+
 const Navbar = ({ activeSection }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -113,17 +115,38 @@ const Navbar = ({ activeSection }) => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+      setMenuOpen(false); // Close menu on mobile after click
     }
   };
 
+  // Prevent background scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   return (
-    <nav className="fixed top-0 w-full z-50 px-3 sm:px-4 md:px-8 py-4 sm:py-6">
-      <div className="max-w-6xl mx-auto flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] transition-all duration-300">
-        {/* Navigation Links - Centered */}
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] min-w-max">
+    <nav className="fixed top-0 w-full z-50 px-2 sm:px-4 md:px-8 py-3 sm:py-6">
+      <div className="max-w-6xl mx-auto flex items-center justify-between md:justify-center bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-3 sm:px-6 lg:px-8 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] transition-all duration-300">
+        {/* Hamburger for mobile */}
+        <div className="md:hidden flex items-center">
+          <button
+            aria-label="Open menu"
+            className="text-slate-300 hover:text-white focus:outline-none"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X size={28} /> : <LayoutGrid size={28} />}
+          </button>
+        </div>
+        {/* Navigation Links */}
+        <div className="hidden md:flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] min-w-max">
           {NAV_ITEMS.map((item) => (
-            <button 
-              key={item.name} 
+            <button
+              key={item.name}
               onClick={() => scrollToSection(item.id)}
               className={`relative transition-all duration-300 group uppercase whitespace-nowrap px-1 py-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] ${activeSection === item.id ? 'text-white' : 'text-slate-400 hover:text-slate-100'}`}
             >
@@ -132,6 +155,30 @@ const Navbar = ({ activeSection }) => {
             </button>
           ))}
         </div>
+        {/* Mobile menu overlay */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-50 bg-black/80 flex flex-col items-center justify-center md:hidden transition-all">
+            <button
+              aria-label="Close menu"
+              className="absolute top-6 right-6 text-slate-300 hover:text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              <X size={32} />
+            </button>
+            <div className="flex flex-col gap-8 text-xl font-bold uppercase tracking-[0.18em] text-white">
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative transition-all duration-300 group uppercase whitespace-nowrap px-2 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${activeSection === item.id ? 'text-cyan-400' : 'text-slate-200 hover:text-cyan-300'}`}
+                >
+                  {item.name}
+                  <span className={`absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${activeSection === item.id ? 'w-full opacity-90' : 'w-0 opacity-60 group-hover:w-full'}`}></span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
@@ -246,7 +293,7 @@ const App = () => {
     {
       title: "FRS-Chatbot",
       desc: "A RAG-based AI chatbot that transforms static FRS documents into an interactive query-driven assistant.",
-      tech: ["Python,JavaScript,HTML,React", "Firebase", "Claude AI"],
+      tech: ["Python", "JavaScript", "HTML", "React", "Firebase", "Claude AI"],
       icon: Cpu,
       githubUrl: "https://github.com/harish200522/FRS-Chatbot",
       sampleImages: sampleImagesByFolder['image3']?.length ? sampleImagesByFolder['image3'] : [heroImage]
@@ -383,7 +430,7 @@ const App = () => {
       <Navbar activeSection={activeSection} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-24 md:pt-20 px-6 lg:px-20 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center items-center pt-24 md:pt-20 px-2 sm:px-4 lg:px-20 overflow-hidden">
         <div className="view-counter-badge" aria-live="polite" title="Portfolio views">
           <Eye size={14} className="text-cyan-300" />
           <span className="view-counter-label">Views</span>
@@ -394,8 +441,8 @@ const App = () => {
 
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8 z-10">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
+          <div className="lg:col-span-8 z-10 w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -406,12 +453,12 @@ const App = () => {
                 <span className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">AI & Data Science Student</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase">
                 It's <br />
                 <span className="text-slate-400">Harishwaran V{'\u00A0'}S</span>
               </h1>
 
-              <div className="text-lg sm:text-xl md:text-2xl font-medium text-slate-300 mb-10 h-10 font-mono tracking-wide">
+              <div className="text-base xs:text-lg sm:text-xl md:text-2xl font-medium text-slate-300 mb-10 h-10 font-mono tracking-wide">
                 {">"} <TypingEffect words={words} />
               </div>
 
@@ -450,7 +497,7 @@ const App = () => {
       </section>
 
       {/* Profile Section */}
-      <section id="profile" className="py-24 px-6 border-t border-white/5 bg-[#0f0f0f]">
+      <section id="profile" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -485,7 +532,7 @@ const App = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-24 px-6 border-t border-white/5 bg-[#121212]">
+      <section id="education" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 border-t border-white/5 bg-[#121212]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-24">
             <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Education</h2>
@@ -511,7 +558,7 @@ const App = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="skills" className="py-24 px-6 border-t border-white/5 bg-[#0f0f0f]">
+      <section id="skills" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
             <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Tech Stack</h2>
@@ -545,7 +592,7 @@ const App = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 px-6 bg-[#121212] border-t border-white/5">
+      <section id="projects" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 bg-[#121212] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-black text-white mb-20 text-center uppercase tracking-tighter italic underline decoration-slate-800 underline-offset-[16px]">My Work</h2>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -595,7 +642,7 @@ const App = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-24 px-6 bg-[#0f0f0f] border-t border-white/5">
+      <section id="experience" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 bg-[#0f0f0f] border-t border-white/5">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Experience</h2>
@@ -614,7 +661,7 @@ const App = () => {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className="py-24 px-6 border-t border-white/5 bg-[#121212]">
+      <section id="certificates" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 border-t border-white/5 bg-[#121212]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Certificates</h2>
@@ -637,7 +684,7 @@ const App = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 text-center border-t border-white/5 bg-[#0f0f0f]">
+      <section id="contact" className="py-16 sm:py-20 md:py-24 px-2 sm:px-6 text-center border-t border-white/5 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto">
           <div className="inline-block p-4 bg-white/5 rounded-full text-slate-500 mb-8">
             <Mail size={32} />
@@ -676,7 +723,7 @@ const App = () => {
       </section>
 
       {/* Footer */}
-      <footer id="footer" className="py-24 px-6 border-t border-white/5 bg-[#121212]">
+      <footer id="footer" className="py-12 sm:py-16 md:py-24 px-2 sm:px-6 border-t border-white/5 bg-[#121212]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-8 lg:gap-12">
           {/* Brand & Quote Info inside a Box Design */}
           <motion.div 
