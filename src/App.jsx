@@ -468,13 +468,13 @@ const App = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 pt-4">
-              <div className="inline-flex items-center justify-center px-8 sm:px-10 py-3 rounded-full bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-black/50">
+              <div className="inline-flex self-center items-center justify-center px-6 sm:px-10 py-2.5 sm:py-3 rounded-full bg-white/5 border border-white/10 text-white font-black text-[11px] sm:text-xs uppercase tracking-[0.24em] sm:tracking-[0.3em] shadow-2xl shadow-black/50">
                 CGPA - 7.3 %
               </div>
               <a
                 href={resumeFilePath}
                 download={resumeDownloadName}
-                className="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-white text-[#121212] font-black text-xs uppercase tracking-[0.3em] hover:bg-slate-200 transition-all shadow-xl shadow-white/5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
+                className="inline-flex self-center items-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-white text-[#121212] font-black text-[11px] sm:text-xs uppercase tracking-[0.24em] sm:tracking-[0.3em] hover:bg-slate-200 transition-all shadow-xl shadow-white/5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
               >
                 <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
                 Resume
