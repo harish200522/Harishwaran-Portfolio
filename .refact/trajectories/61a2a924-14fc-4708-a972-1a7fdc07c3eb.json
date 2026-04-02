@@ -1,0 +1,24 @@
+{
+  "id": "61a2a924-14fc-4708-a972-1a7fdc07c3eb",
+  "title": "New Chat",
+  "model": "",
+  "mode": "setup_commands",
+  "tool_use": "agent",
+  "messages": [
+    {
+      "message_id": "f7a804a1-75e5-413a-9efb-2ccdc680a7fa",
+      "role": "user",
+      "content": "Help me define project commands."
+    }
+  ],
+  "created_at": "2026-04-02T13:00:37.376360700+00:00",
+  "updated_at": "2026-04-02T13:00:37.434366500+00:00",
+  "boost_reasoning": false,
+  "checkpoints_enabled": false,
+  "context_tokens_cap": null,
+  "include_project_info": true,
+  "isTitleGenerated": false,
+  "auto_approve_editing_tools": false,
+  "auto_approve_dangerous_commands": false,
+  "root_chat_id": "61a2a924-14fc-4708-a972-1a7fdc07c3eb"
+}

@@ -117,8 +117,8 @@ const Navbar = ({ activeSection }) => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 px-3 sm:px-4 md:px-8 py-4 sm:py-6">
-      <div className="max-w-6xl mx-auto flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] transition-all duration-300">
+    <nav className="fixed top-0 w-full z-50 px-4 md:px-8 py-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)] transition-all duration-300">
         {/* Navigation Links - Centered */}
         <div className="flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] min-w-max">
           {NAV_ITEMS.map((item) => (
@@ -146,13 +146,13 @@ const EducationItem = ({ title, school, status, desc, isLast }) => (
     
     <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
       <div className="space-y-2">
-        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{title}</h3>
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight">{title}</h3>
         <p className="text-cyan-500 font-bold text-sm md:text-base uppercase tracking-wider">{school}</p>
         <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-2xl mt-4 italic font-medium">
           {desc}
         </p>
       </div>
-      <div className={`px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest self-start md:self-auto border ${status === 'Present' ? 'bg-cyan-500 text-white border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.3)]' : 'bg-[#1a1a1a] text-cyan-400 border-cyan-900/30'}`}>
+      <div className={`px-4 sm:px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest self-start md:self-auto border ${status === 'Present' ? 'bg-cyan-500 text-white border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.3)]' : 'bg-[#1a1a1a] text-cyan-400 border-cyan-900/30'}`}>
         {status}
       </div>
     </div>
@@ -164,18 +164,18 @@ const ExperienceCard = ({ title, company, date, desc }) => (
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="relative p-8 md:p-12 bg-white/5 border border-white/10 rounded-[2.5rem] group hover:border-cyan-500/30 transition-all duration-500"
+    className="relative p-6 sm:p-8 md:p-12 bg-white/5 border border-white/10 rounded-[2.5rem] group hover:border-cyan-500/30 transition-all duration-500"
   >
     <div className="space-y-4">
-      <h3 className="text-3xl md:text-4xl font-black text-cyan-400 tracking-tight italic uppercase">
+      <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 tracking-tight italic uppercase">
         {title}
       </h3>
-      <div className="flex items-center gap-3 text-slate-400 font-bold uppercase tracking-widest text-sm">
+      <div className="flex items-center gap-3 text-slate-400 font-bold uppercase tracking-widest text-xs sm:text-sm">
         <span className="text-white/80">{company}</span>
         <span className="text-cyan-600 font-black">/</span>
         <span>{date}</span>
       </div>
-      <p className="text-slate-500 text-lg md:text-xl leading-relaxed italic mt-6 font-medium">
+      <p className="text-base sm:text-lg md:text-xl leading-relaxed italic mt-6 font-medium text-slate-400">
         "{desc}"
       </p>
     </div>
@@ -187,14 +187,14 @@ const CertificateCard = ({ title, score, icon: Icon }) => (
     initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
-    className="relative p-8 bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-[2rem] overflow-hidden group hover:border-white/20 transition-all duration-500"
+    className="relative p-6 sm:p-8 bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-[2rem] overflow-hidden group hover:border-white/20 transition-all duration-500"
   >
-    <div className="flex items-start gap-6">
-      <div className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl group-hover:bg-orange-500/20 transition-colors">
-        <Icon size={32} className="text-orange-400" />
+    <div className="flex items-start gap-4 sm:gap-6">
+      <div className="p-3 sm:p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl group-hover:bg-orange-500/20 transition-colors">
+        <Icon size={28} sm:size={32} className="text-orange-400" />
       </div>
       <div className="space-y-2">
-        <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
+        <h3 className="text-base sm:text-xl md:text-2xl font-bold text-white leading-tight">
           {title}
         </h3>
         <p className="text-orange-400/80 font-bold uppercase tracking-[0.2em] text-xs">
@@ -383,7 +383,7 @@ const App = () => {
       <Navbar activeSection={activeSection} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-24 md:pt-20 px-6 lg:px-20 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-24 md:pt-20 px-4 sm:px-6 lg:px-20 overflow-hidden">
         <div className="view-counter-badge" aria-live="polite" title="Portfolio views">
           <Eye size={14} className="text-cyan-300" />
           <span className="view-counter-label">Views</span>
@@ -394,28 +394,28 @@ const App = () => {
 
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center text-center lg:text-left">
           <div className="lg:col-span-8 z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
                 <span className="h-[1px] w-12 bg-slate-700"></span>
                 <span className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">AI & Data Science Student</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase">
                 It's <br />
                 <span className="text-slate-400">Harishwaran V{'\u00A0'}S</span>
               </h1>
 
-              <div className="text-lg sm:text-xl md:text-2xl font-medium text-slate-300 mb-10 h-10 font-mono tracking-wide">
+              <div className="text-lg sm:text-xl md:text-2xl font-medium text-slate-300 mb-10 h-auto md:h-10 font-mono tracking-wide">
                 {">"} <TypingEffect words={words} />
               </div>
 
-              <div className="flex flex-wrap gap-8 mb-4">
+              <div className="flex flex-wrap gap-4 sm:gap-8 mb-4 justify-center lg:justify-start">
                 <div className="flex items-center gap-2 text-slate-400">
                   <MapPin size={16} />
                   <span className="text-xs font-bold uppercase tracking-widest">Ariyalur, Tamil Nadu, India</span>
@@ -450,7 +450,7 @@ const App = () => {
       </section>
 
       {/* Profile Section */}
-      <section id="profile" className="py-24 px-6 border-t border-white/5 bg-[#0f0f0f]">
+      <section id="profile" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -459,16 +459,16 @@ const App = () => {
             className="space-y-10"
           >
             <div className="flex flex-col items-center gap-4">
-              <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic">Profile</h2>
+              <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter italic">Profile</h2>
               <div className="w-12 h-1 bg-white/10"></div>
             </div>
             
-            <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto px-4">
               I am an AI and Data Science student and a passionate web developer. I specialize in building responsive websites and integrating intelligent features to create modern, user-friendly applications.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-6 pt-4">
-              <div className="inline-flex items-center px-10 py-3 rounded-full bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-black/50">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 pt-4">
+              <div className="inline-flex items-center justify-center px-8 sm:px-10 py-3 rounded-full bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-black/50">
                 CGPA - 7.3 %
               </div>
               <a
@@ -485,10 +485,10 @@ const App = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-24 px-6 border-t border-white/5 bg-[#121212]">
+      <section id="education" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121212]">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Education</h2>
+          <div className="text-center mb-16 sm:mb-24">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Education</h2>
             <div className="w-12 h-1 bg-white/10 mx-auto"></div>
           </div>
 
@@ -511,14 +511,14 @@ const App = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="skills" className="py-24 px-6 border-t border-white/5 bg-[#0f0f0f]">
+      <section id="skills" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Tech Stack</h2>
+          <div className="text-center mb-16 sm:mb-24">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Tech Stack</h2>
             <div className="w-12 h-1 bg-white/10 mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
             {[
               { n: 'Python', i: Terminal },
               { n: 'Java', i: Code2 },
@@ -534,7 +534,7 @@ const App = () => {
                 viewport={{ once: true }}
                 whileHover={{ backgroundColor: '#1a1a1a', borderColor: 'rgba(255,255,255,0.1)' }}
                 transition={{ duration: 0.35 }}
-                className="p-8 sm:p-10 bg-transparent border border-white/5 rounded-3xl text-center transition-all group"
+                className="p-6 sm:p-8 md:p-10 bg-transparent border border-white/5 rounded-3xl text-center transition-all group"
               >
                 <skill.i className="mx-auto mb-4 text-slate-600 group-hover:text-white transition-colors" size={32} />
                 <span className="font-bold text-[10px] uppercase tracking-[0.2em] text-slate-500 group-hover:text-slate-300">{skill.n}</span>
@@ -545,10 +545,10 @@ const App = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 px-6 bg-[#121212] border-t border-white/5">
+      <section id="projects" className="py-20 sm:py-24 px-4 sm:px-6 bg-[#121212] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-black text-white mb-20 text-center uppercase tracking-tighter italic underline decoration-slate-800 underline-offset-[16px]">My Work</h2>
-          <div className="grid lg:grid-cols-3 gap-8">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-16 sm:mb-20 text-center uppercase tracking-tighter italic underline decoration-slate-800 underline-offset-[16px]">My Work</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((p, i) => (
               <motion.div 
                 key={i}
@@ -557,10 +557,10 @@ const App = () => {
                 viewport={{ once: true }}
                 whileHover={{ y: -6, scale: 1.015 }}
                 transition={{ type: 'spring', stiffness: 240, damping: 22 }}
-                className="group relative bg-[#1a1a1a] border border-white/5 rounded-[2rem] p-8 sm:p-10 hover:border-cyan-500/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition-all duration-500 flex flex-col"
+                className="group relative bg-[#1a1a1a] border border-white/5 rounded-[2rem] p-6 sm:p-8 md:p-10 hover:border-cyan-500/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition-all duration-500 flex flex-col"
               >
                 <p.icon size={24} className="text-slate-600 mb-8" />
-                <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight">{p.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 uppercase tracking-tight">{p.title}</h3>
                 <p className="text-slate-400 leading-relaxed mb-10 text-sm">{p.desc}</p>
                 <div className="flex flex-wrap gap-2 mb-10">
                   {p.tech.map(t => (
@@ -595,10 +595,10 @@ const App = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-24 px-6 bg-[#0f0f0f] border-t border-white/5">
+      <section id="experience" className="py-20 sm:py-24 px-4 sm:px-6 bg-[#0f0f0f] border-t border-white/5">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Experience</h2>
+          <div className="text-center mb-16 sm:mb-20">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Experience</h2>
             <div className="w-12 h-1 bg-white/10 mx-auto"></div>
           </div>
           
@@ -614,10 +614,10 @@ const App = () => {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className="py-24 px-6 border-t border-white/5 bg-[#121212]">
+      <section id="certificates" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121212]">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Certificates</h2>
+          <div className="text-center mb-16 sm:mb-20">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 uppercase tracking-tighter italic">Certificates</h2>
             <div className="w-12 h-1 bg-white/10 mx-auto"></div>
           </div>
           
@@ -637,15 +637,15 @@ const App = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 text-center border-t border-white/5 bg-[#0f0f0f]">
+      <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 text-center border-t border-white/5 bg-[#0f0f0f]">
         <div className="max-w-4xl mx-auto">
           <div className="inline-block p-4 bg-white/5 rounded-full text-slate-500 mb-8">
             <Mail size={32} />
           </div>
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter uppercase leading-none">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter uppercase leading-none">
             Let's Start a <br /> <span className="text-slate-500 italic">Conversation.</span>
           </h2>
-          <div className="text-slate-500 mb-16 max-w-xl mx-auto text-sm leading-relaxed">
+          <div className="text-slate-400 mb-12 sm:mb-16 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             <p className="mb-4">
               I am currently seeking internship opportunities where I can apply my skills in data analysis and development.
             </p>
@@ -667,7 +667,7 @@ const App = () => {
             target="_blank"
             rel="noreferrer noopener"
             aria-label={`Email ${contactEmail}`}
-            className="group relative inline-flex items-center gap-4 px-12 py-5 bg-white text-[#121212] rounded-full font-black uppercase tracking-[0.2em] text-xs transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
+            className="group relative inline-flex items-center gap-3 sm:gap-4 px-8 sm:px-12 py-4 sm:py-5 bg-white text-[#121212] rounded-full font-black uppercase tracking-[0.2em] text-xs transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
           >
             <span>{contactEmail}</span>
             <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -676,14 +676,14 @@ const App = () => {
       </section>
 
       {/* Footer */}
-      <footer id="footer" className="py-24 px-6 border-t border-white/5 bg-[#121212]">
+      <footer id="footer" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121212]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-8 lg:gap-12">
           {/* Brand & Quote Info inside a Box Design */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="p-8 md:p-10 bg-white/[0.03] border border-white/5 rounded-[2.5rem] backdrop-blur-sm space-y-4 w-full md:w-auto shadow-2xl shadow-black/50"
+            className="p-8 md:p-10 bg-white/[0.03] border border-white/5 rounded-[2.5rem] backdrop-blur-sm space-y-4 w-full max-w-md md:w-auto text-center md:text-left shadow-2xl shadow-black/50"
           >
             <div className="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">HW.</div>
             <p className="text-slate-500 italic font-medium text-sm md:text-base">
@@ -700,7 +700,7 @@ const App = () => {
           </div>
 
           {/* Social Icons Dock */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             {[
               { icon: FaGithub, link: socialLinks.github, label: 'GitHub' },
               { icon: FaLinkedinIn, link: socialLinks.linkedin, label: 'LinkedIn' },
@@ -713,9 +713,9 @@ const App = () => {
                 target="_blank"
                 rel="noreferrer noopener"
                 whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.08)' }}
-                className="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
+                className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
               >
-                <social.icon size={20} />
+                <social.icon size={20} sm:size={22} />
               </motion.a>
             ))}
           </div>
@@ -736,10 +736,10 @@ const App = () => {
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.25 }}
             onClick={(event) => event.stopPropagation()}
-            className="w-full max-w-5xl bg-[#151515] border border-white/10 rounded-3xl p-5 sm:p-7"
+            className="w-full max-w-5xl bg-[#151515] border border-white/10 rounded-3xl p-4 sm:p-5 md:p-7"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-wide">
                 {selectedProject.title} Samples
               </h3>
               <button
@@ -755,7 +755,7 @@ const App = () => {
               <img
                 src={selectedProject.sampleImages[activeSampleIndex]}
                 alt={`${selectedProject.title} sample ${activeSampleIndex + 1}`}
-                className="w-full h-[260px] sm:h-[380px] md:h-[460px] object-cover"
+                className="w-full h-[200px] sm:h-[260px] md:h-[380px] lg:h-[460px] object-cover"
               />
 
               {selectedProject.sampleImages.length > 1 && (
