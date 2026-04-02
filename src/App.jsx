@@ -383,7 +383,7 @@ const App = () => {
       <Navbar activeSection={activeSection} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-24 md:pt-20 px-4 sm:px-6 lg:px-20 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-24 md:pt-20 px-6 sm:px-6 lg:px-20 overflow-hidden">
         <div className="view-counter-badge" aria-live="polite" title="Portfolio views">
           <Eye size={14} className="text-cyan-300" />
           <span className="view-counter-label">Views</span>
