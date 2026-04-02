@@ -406,7 +406,7 @@ const App = () => {
                 <span className="text-slate-500 font-bold uppercase tracking-[0.4em] text-[10px]">AI & Data Science Student</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase break-words">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase">
                 It's <br />
                 <span className="text-slate-400">Harishwaran V{'\u00A0'}S</span>
               </h1>
