@@ -305,26 +305,49 @@ const App = () => {
   useEffect(() => {
     let isMounted = true;
     const cacheKey = 'harishwaran_portfolio_view_count';
+    const lastSeenKey = 'harishwaran_portfolio_last_view_at';
+    const namespace = 'harishwaran-vs-portfolio';
+    const key = 'views';
+    const registerWindowMs = 1000 * 60 * 60 * 12;
 
-    const fetchViewCount = async () => {
-      const setCountSafely = (value) => {
-        if (!isMounted) return;
-        setViewCount(value);
-        setViewCountError(false);
-        if (typeof value === 'number') {
-          localStorage.setItem(cacheKey, String(value));
-        }
-      };
+    const setCountSafely = (value) => {
+      if (!isMounted) return;
+      setViewCount(value);
+      setViewCountError(false);
+      if (typeof value === 'number') {
+        localStorage.setItem(cacheKey, String(value));
+      }
+    };
 
-      try {
-        const response = await fetch('https://api.countapi.xyz/hit/harishwaran-vs-portfolio/views');
-        if (!response.ok) throw new Error('CountAPI request failed');
-        const data = await response.json();
-        if (typeof data?.value === 'number') {
-          setCountSafely(data.value);
-          return;
-        }
+    const shouldRegisterVisit = () => {
+      const lastSeen = Number(localStorage.getItem(lastSeenKey));
+      if (!Number.isFinite(lastSeen)) return true;
+      return Date.now() - lastSeen > registerWindowMs;
+    };
+
+    const fetchViewCount = async (registerVisit) => {
+      const endpoint = registerVisit
+        ? `https://api.countapi.xyz/hit/${namespace}/${key}`
+        : `https://api.countapi.xyz/get/${namespace}/${key}`;
+
+      const response = await fetch(endpoint, { cache: 'no-store' });
+      if (!response.ok) throw new Error('CountAPI request failed');
+
+      const data = await response.json();
+      if (typeof data?.value !== 'number') {
         throw new Error('Invalid CountAPI response');
+      }
+
+      setCountSafely(data.value);
+
+      if (registerVisit) {
+        localStorage.setItem(lastSeenKey, String(Date.now()));
+      }
+    };
+
+    const loadCounter = async () => {
+      try {
+        await fetchViewCount(shouldRegisterVisit());
       } catch {
         const cachedCount = Number(localStorage.getItem(cacheKey));
         if (Number.isFinite(cachedCount) && cachedCount > 0) {
@@ -332,31 +355,24 @@ const App = () => {
           return;
         }
 
-        // Secondary fallback keeps the badge usable when CountAPI DNS/service is temporarily down.
-        try {
-          const fallbackResponse = await fetch('https://api.visitorbadge.io/api/visitors?path=harishwaran-vs-portfolio');
-          if (!fallbackResponse.ok) throw new Error('Fallback request failed');
-          const fallbackText = await fallbackResponse.text();
-          const match = fallbackText.match(/aria-label="[^:]+:\s*([0-9,]+)"/i);
-          const parsedValue = Number((match?.[1] || '').replace(/,/g, ''));
-          if (Number.isFinite(parsedValue) && parsedValue > 0) {
-            setCountSafely(parsedValue);
-            return;
-          }
-          throw new Error('Unable to parse fallback counter');
-        } catch {
-          if (isMounted) {
-            setViewCountError(true);
-            setViewCount(null);
-          }
+        if (isMounted) {
+          setViewCountError(true);
+          setViewCount(null);
         }
       }
     };
 
-    fetchViewCount();
+    loadCounter();
+
+    const pollId = window.setInterval(() => {
+      fetchViewCount(false).catch(() => {
+        // Keep the last known value visible if polling temporarily fails.
+      });
+    }, 15000);
 
     return () => {
       isMounted = false;
+      window.clearInterval(pollId);
     };
   }, []);
 
