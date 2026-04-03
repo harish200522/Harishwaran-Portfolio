@@ -3,7 +3,6 @@ import {
   GitBranch as Github, 
   Link as Linkedin, 
   Mail, 
-  ExternalLink, 
   Code2, 
   Database, 
   Cpu, 
@@ -13,7 +12,6 @@ import {
   Camera as Instagram,
   Terminal,
   MapPin,
-  Download,
   Send as Twitter,
   LayoutGrid,
   Zap,
@@ -484,16 +482,21 @@ const App = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 pt-4">
-              <div className="inline-flex self-center items-center justify-center px-6 sm:px-10 py-2.5 sm:py-3 rounded-full bg-white/5 border border-white/10 text-white font-black text-[11px] sm:text-xs uppercase tracking-[0.24em] sm:tracking-[0.3em] shadow-2xl shadow-black/50">
-                CGPA - 7.3 %
+              <div className="brutalist-button" aria-label="CGPA 7.3 percent">
+                <div className="button-text">
+                  <span>CGPA</span>
+                  <span>7.3%</span>
+                </div>
               </div>
               <a
                 href={resumeFilePath}
                 download={resumeDownloadName}
-                className="inline-flex self-center items-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-white text-[#121212] font-black text-[11px] sm:text-xs uppercase tracking-[0.24em] sm:tracking-[0.3em] hover:bg-slate-200 transition-all shadow-xl shadow-white/5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]"
+                className="brutalist-button"
               >
-                <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
-                Resume
+                <div className="button-text">
+                  <span>Download</span>
+                  <span>Resume</span>
+                </div>
               </a>
             </div>
           </motion.div>
@@ -587,21 +590,35 @@ const App = () => {
                 </div>
                 
                 {/* Action Buttons Container */}
-                <div className="flex flex-wrap items-center gap-3 mt-auto">
+                <div className="flex flex-nowrap items-center gap-2 mt-auto">
                   <button
                     onClick={() => openSamples(p)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400 transition-all duration-300 group/btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+                    className="Documents-btn"
                   >
-                    See Sample <ExternalLink size={13} className="group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <span className="folderContainer" aria-hidden="true">
+                      <svg className="fileBack" viewBox="0 0 146 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 4C0 1.79086 1.79086 0 4 0H42.6888C44.5924 0 46.4357 0.678792 47.8867 1.91411L64.5589 16.0859C66.0099 17.3212 67.8532 18 69.7568 18H142C144.209 18 146 19.7909 146 22V109C146 111.209 144.209 113 142 113H4C1.79086 113 0 111.209 0 109V4Z" fill="#7f86c7" />
+                      </svg>
+                      <svg className="filePage" viewBox="0 0 88 99" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 0H61L88 27V93C88 96.3137 85.3137 99 82 99H16C12.6863 99 10 96.3137 10 93V6C10 2.68629 12.6863 0 16 0Z" fill="white" />
+                        <path d="M61 0V21C61 24.3137 63.6863 27 67 27H88" fill="#dbeafe" />
+                      </svg>
+                      <svg className="fileFront" viewBox="0 0 160 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 5C0 2.23858 2.23858 0 5 0H155C157.761 0 160 2.23858 160 5V74C160 76.7614 157.761 79 155 79H5C2.23858 79 0 76.7614 0 74V5Z" fill="#f8fafc" />
+                        <path d="M16 18H74" stroke="#94a3b8" strokeWidth="6" strokeLinecap="round" />
+                        <path d="M16 33H108" stroke="#cbd5e1" strokeWidth="6" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    <span className="text">See Sample</span>
                   </button>
                   <a
                     href={p.githubUrl}
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={`Open ${p.title} in GitHub`}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-300 group/btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+                    className="btn-github"
                   >
-                    Open in GitHub <Github size={14} className="group-hover/btn:scale-110 transition-transform" />
+                    Open in GitHub <Github size={12} />
                   </a>
                 </div>
               </motion.div>
@@ -717,23 +734,40 @@ const App = () => {
 
           {/* Social Icons Dock */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {[
-              { icon: FaGithub, link: socialLinks.github, label: 'GitHub' },
-              { icon: FaLinkedinIn, link: socialLinks.linkedin, label: 'LinkedIn' },
-              { icon: FaInstagram, link: socialLinks.instagram, label: 'Instagram' }
-            ].map((social, idx) => (
-              <motion.a
-                key={idx}
-                href={social.link}
-                aria-label={social.label}
-                target="_blank"
-                rel="noreferrer noopener"
-                whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.08)' }}
-                className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
-              >
-                <social.icon size={20} sm:size={22} />
-              </motion.a>
-            ))}
+            <a
+              href={socialLinks.github}
+              aria-label="GitHub"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="github-btn"
+            >
+              <FaGithub size={20} className="github-svg-icon" aria-hidden="true" />
+              <span className="github-text">GitHub</span>
+            </a>
+
+            <a
+              href={socialLinks.linkedin}
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="linkedin-btn"
+            >
+              <span className="linkedin-sign" aria-hidden="true">
+                <FaLinkedinIn size={20} />
+              </span>
+              <span className="linkedin-text">LinkedIn</span>
+            </a>
+
+            <a
+              href={socialLinks.instagram}
+              aria-label="Instagram"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="instagram-btn"
+            >
+              <FaInstagram size={20} className="instagram-svg-icon" aria-hidden="true" />
+              <span className="instagram-text">Instagram</span>
+            </a>
           </div>
         </div>
       </footer>
@@ -895,6 +929,396 @@ const App = () => {
           background: #22d3ee;
           box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5);
           animation: footerPulse 2.4s ease-in-out infinite;
+        }
+
+        .btn-github {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          border: none;
+
+          transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+          border-radius: 100px;
+          font-weight: 800;
+          place-content: center;
+
+          padding: 0.55rem 0.75rem;
+          font-size: 0.7rem;
+          line-height: 0.9rem;
+          white-space: nowrap;
+          flex-shrink: 0;
+
+          background-color: rgba(0, 0, 0, 0.4);
+          box-shadow:
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+          color: #fff;
+        }
+
+        .btn-github:hover {
+          box-shadow:
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+            inset 0 0 0 1px rgba(252, 232, 3, 0.08);
+          color: #fce803;
+          transform: translate(0, -0.25rem);
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .Documents-btn {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: fit-content;
+          height: 40px;
+          border: none;
+          padding: 0px 10px;
+          border-radius: 5px;
+          background-color: rgb(49, 49, 83);
+          gap: 8px;
+          cursor: pointer;
+          transition: all 0.3s;
+          flex-shrink: 0;
+        }
+
+        .folderContainer {
+          width: 30px;
+          height: fit-content;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          position: relative;
+        }
+
+        .fileBack {
+          z-index: 1;
+          width: 80%;
+          height: auto;
+        }
+
+        .filePage {
+          width: 50%;
+          height: auto;
+          position: absolute;
+          z-index: 2;
+          transition: all 0.3s ease-out;
+        }
+
+        .fileFront {
+          width: 85%;
+          height: auto;
+          position: absolute;
+          z-index: 3;
+          opacity: 0.95;
+          transform-origin: bottom;
+          transition: all 0.3s ease-out;
+        }
+
+        .text {
+          color: white;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          white-space: nowrap;
+        }
+
+        .Documents-btn:hover .filePage {
+          transform: translateY(-5px);
+        }
+
+        .Documents-btn:hover {
+          background-color: rgb(58, 58, 94);
+        }
+
+        .Documents-btn:active {
+          transform: scale(0.95);
+        }
+
+        .Documents-btn:hover .fileFront {
+          transform: rotateX(30deg);
+        }
+
+        .brutalist-button {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          width: 169px;
+          height: 60px;
+          background-color: #000;
+          color: #fff;
+          text-decoration: none;
+          font-family: Arial, sans-serif;
+          font-weight: bold;
+          border: 3px solid #fff;
+          outline: 3px solid #000;
+          box-shadow: 6px 6px 0 #00a4ef;
+          transition: all 0.1s ease-out;
+          padding: 0 15px;
+          box-sizing: border-box;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .brutalist-button::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.8),
+            transparent
+          );
+          z-index: 1;
+          transition: none;
+          opacity: 0;
+        }
+
+        @keyframes slide {
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
+
+        .brutalist-button:hover::before {
+          opacity: 1;
+          animation: slide 2s infinite;
+        }
+
+        .brutalist-button:hover {
+          transform: translate(-4px, -4px);
+          box-shadow: 10px 10px 0 #000;
+          background-color: #000;
+          color: #fff;
+        }
+
+        @keyframes slide {
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
+
+        .brutalist-button:active {
+          transform: translate(4px, 4px);
+          box-shadow: 0px 0px 0 #00a4ef;
+          background-color: #fff;
+          color: #000;
+          border-color: #000;
+        }
+
+        .button-text {
+          display: flex;
+          flex-direction: column;
+          line-height: 1.2;
+          transition: transform 0.2s ease-out;
+          position: relative;
+          z-index: 1;
+        }
+
+        .brutalist-button:hover .button-text {
+          transform: skew(-5deg);
+        }
+
+        .brutalist-button:active .button-text {
+          transform: skew(5deg);
+        }
+
+        .button-text span:first-child {
+          font-size: 11px;
+          text-transform: uppercase;
+        }
+
+        .button-text span:last-child {
+          font-size: 16px;
+          text-transform: uppercase;
+        }
+
+        .github-btn {
+          border: none;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition-duration: 0.4s;
+          cursor: pointer;
+          position: relative;
+          background-color: rgb(31, 31, 31);
+          overflow: hidden;
+          color: #fff;
+          flex-shrink: 0;
+        }
+
+        .github-svg-icon {
+          transition-duration: 0.3s;
+        }
+
+        .github-text {
+          position: absolute;
+          color: rgb(255, 255, 255);
+          width: 120px;
+          font-weight: 600;
+          opacity: 0;
+          transition-duration: 0.4s;
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        .github-btn:hover {
+          width: 110px;
+          transition-duration: 0.4s;
+          border-radius: 30px;
+        }
+
+        .github-btn:hover .github-text {
+          opacity: 1;
+          transition-duration: 0.4s;
+        }
+
+        .github-btn:hover .github-svg-icon {
+          opacity: 0;
+          transition-duration: 0.3s;
+        }
+
+        .github-btn:focus-visible {
+          outline: 2px solid #67e8f9;
+          outline-offset: 2px;
+        }
+
+        .linkedin-btn {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 45px;
+          height: 45px;
+          border: none;
+          border-radius: 999px;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          transition-duration: 0.3s;
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+          background-color: #0a66c2;
+          color: #fff;
+          flex-shrink: 0;
+        }
+
+        .linkedin-sign {
+          width: 100%;
+          transition-duration: 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+        }
+
+        .linkedin-text {
+          position: absolute;
+          right: 0;
+          width: 0;
+          opacity: 0;
+          color: #fff;
+          font-size: 1.05rem;
+          font-weight: 600;
+          white-space: nowrap;
+          transition-duration: 0.3s;
+          text-align: center;
+        }
+
+        .linkedin-btn:hover {
+          width: 135px;
+          border-radius: 40px;
+        }
+
+        .linkedin-btn:hover .linkedin-sign {
+          width: 30%;
+          padding-left: 10px;
+        }
+
+        .linkedin-btn:hover .linkedin-text {
+          opacity: 1;
+          width: 70%;
+          padding-right: 10px;
+        }
+
+        .linkedin-btn:active {
+          transform: translate(2px, 2px);
+        }
+
+        .linkedin-btn:focus-visible {
+          outline: 2px solid #67e8f9;
+          outline-offset: 2px;
+        }
+
+        .instagram-btn {
+          border: none;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition-duration: 0.4s;
+          cursor: pointer;
+          position: relative;
+          background: #f09433;
+          background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+
+        .instagram-svg-icon {
+          transition-duration: 0.3s;
+        }
+
+        .instagram-svg-icon path {
+          fill: white;
+        }
+
+        .instagram-text {
+          position: absolute;
+          color: rgb(255, 255, 255);
+          width: 120px;
+          font-weight: 600;
+          opacity: 0;
+          transition-duration: 0.4s;
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        .instagram-btn:hover {
+          width: 110px;
+          transition-duration: 0.4s;
+          border-radius: 30px;
+        }
+
+        .instagram-btn:hover .instagram-text {
+          opacity: 1;
+          transition-duration: 0.4s;
+        }
+
+        .instagram-btn:hover .instagram-svg-icon {
+          opacity: 0;
+          transition-duration: 0.3s;
+        }
+
+        .instagram-btn:focus-visible {
+          outline: 2px solid #67e8f9;
+          outline-offset: 2px;
         }
 
         @keyframes footerLineShift {
