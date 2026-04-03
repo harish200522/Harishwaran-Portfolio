@@ -481,7 +481,7 @@ const App = () => {
               I am an AI and Data Science student and a passionate web developer. I specialize in building responsive websites and integrating intelligent features to create modern, user-friendly applications.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 pt-4">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 pt-4">
               <div className="brutalist-button" aria-label="CGPA 7.3 percent">
                 <div className="button-text">
                   <span>CGPA</span>
