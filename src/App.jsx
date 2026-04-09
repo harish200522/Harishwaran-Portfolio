@@ -813,7 +813,7 @@ const App = () => {
               <img
                 src={selectedProject.sampleImages[activeSampleIndex]}
                 alt={`${selectedProject.title} sample ${activeSampleIndex + 1}`}
-                className="w-full h-[min(52vh,220px)] sm:h-[260px] md:h-[380px] lg:h-[460px] object-cover"
+                className="w-full h-[min(66vh,460px)] sm:h-[min(62vh,520px)] md:h-[380px] lg:h-[460px] object-contain bg-[#0b0b0b]"
               />
 
               {selectedProject.sampleImages.length > 1 && (
