@@ -782,7 +782,7 @@ const App = () => {
 
       {selectedProject && (
         <div
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm px-4 py-8 flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm px-3 sm:px-4 py-4 sm:py-8 flex items-start sm:items-center justify-center overflow-y-auto"
           onClick={closeSamples}
           role="dialog"
           aria-modal="true"
@@ -794,7 +794,7 @@ const App = () => {
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.25 }}
             onClick={(event) => event.stopPropagation()}
-            className="w-full max-w-5xl bg-[#151515] border border-white/10 rounded-3xl p-4 sm:p-5 md:p-7"
+            className="w-full max-w-5xl bg-[#151515] border border-white/10 rounded-3xl p-4 sm:p-5 md:p-7 my-auto max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-wide">
@@ -813,7 +813,7 @@ const App = () => {
               <img
                 src={selectedProject.sampleImages[activeSampleIndex]}
                 alt={`${selectedProject.title} sample ${activeSampleIndex + 1}`}
-                className="w-full h-[200px] sm:h-[260px] md:h-[380px] lg:h-[460px] object-cover"
+                className="w-full h-[min(52vh,220px)] sm:h-[260px] md:h-[380px] lg:h-[460px] object-cover"
               />
 
               {selectedProject.sampleImages.length > 1 && (
