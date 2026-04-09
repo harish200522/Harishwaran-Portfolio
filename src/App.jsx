@@ -30,13 +30,13 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import heroImage from './assets/hero.png';
 
-const sampleImageModules = import.meta.glob('./assets/image{1,2,3}/*.{png,jpg,jpeg,webp,gif}', {
+const sampleImageModules = import.meta.glob('./assets/image{1,2,3,4}/*.{png,jpg,jpeg,webp,gif}', {
   eager: true,
   import: 'default'
 });
 
 const sampleImagesByFolder = Object.entries(sampleImageModules).reduce((acc, [path, url]) => {
-  const match = path.match(/assets\/(image[1-3])\//i);
+  const match = path.match(/assets\/(image[1-4])\//i);
   if (!match) return acc;
 
   const folder = match[1].toLowerCase();
@@ -248,6 +248,14 @@ const App = () => {
       icon: Cpu,
       githubUrl: "https://github.com/harish200522/FRS-Chatbot",
       sampleImages: sampleImagesByFolder['image3']?.length ? sampleImagesByFolder['image3'] : [heroImage]
+    },
+    {
+      title: "POS System",
+      desc: "A modern multi-tenant POS (Point of Sale) web application that enables businesses to manage billing, inventory, and transactions efficiently with real-time analytics and seamless mobile app support.",
+      tech: ["Frontend: HTML, CSS, JavaScript", "Backend: Node.js, Express.js", "Database: MongoDB"],
+      icon: Code2,
+      githubUrl: "https://github.com/harish200522/POS-System",
+      sampleImages: sampleImagesByFolder['image4']?.length ? sampleImagesByFolder['image4'] : [heroImage]
     }
   ];
 
