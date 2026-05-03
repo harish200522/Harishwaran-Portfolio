@@ -262,8 +262,8 @@ const App = () => {
       desc: "Built and deployed a full-stack catalogue website for a real client using React, Node.js, PostgreSQL, and Cloudinary.",
       tech: ["React (Vite)", "Node.js, Express", "PostgreSQL (Neon)", "Cloudinary", "Netlify, Hostinger"],
       icon: LayoutGrid,
-      githubUrl: "",
-      sampleImages: [heroImage]
+      githubUrl: "https://github.com/harish200522/INOUT-Fashion-Catalogue",
+      sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
     }
   ];
 
