@@ -429,8 +429,8 @@ const App = () => {
               </div>
               
               <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter mb-7 md:mb-8 uppercase">
-                It's <br />
-                <span className="text-slate-400">Harishwaran V{'\u00A0'}S</span>
+                Am <br />
+                <span className="text-slate-400">Harishwaran</span>
               </h1>
 
               <div className="text-lg sm:text-xl md:text-2xl font-medium text-slate-300 mb-10 h-auto md:h-10 font-mono tracking-wide">
