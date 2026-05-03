@@ -30,13 +30,13 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import heroImage from './assets/hero.png';
 
-const sampleImageModules = import.meta.glob('./assets/image{1,2,3,4}/*.{png,jpg,jpeg,webp,gif}', {
+const sampleImageModules = import.meta.glob('./assets/image{1,2,3,4,5}/*.{png,jpg,jpeg,webp,gif}', {
   eager: true,
   import: 'default'
 });
 
 const sampleImagesByFolder = Object.entries(sampleImageModules).reduce((acc, [path, url]) => {
-  const match = path.match(/assets\/(image[1-4])\//i);
+  const match = path.match(/assets\/(image[1-5])\//i);
   if (!match) return acc;
 
   const folder = match[1].toLowerCase();
