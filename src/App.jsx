@@ -256,6 +256,14 @@ const App = () => {
       icon: Code2,
       githubUrl: "https://github.com/harish200522/POS-System",
       sampleImages: sampleImagesByFolder['image4']?.length ? sampleImagesByFolder['image4'] : [heroImage]
+    },
+    {
+      title: "INOUT Fashion Catalogue",
+      desc: "Built and deployed a full-stack catalogue website for a real client using React, Node.js, PostgreSQL, and Cloudinary.",
+      tech: ["React (Vite)", "Node.js, Express", "PostgreSQL (Neon)", "Cloudinary", "Netlify, Hostinger"],
+      icon: LayoutGrid,
+      githubUrl: "",
+      sampleImages: [heroImage]
     }
   ];
 
