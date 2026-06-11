@@ -639,10 +639,10 @@ const App = () => {
                 rel="noreferrer"
                 className="hero-get-in-touch"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                <span>Get in Touch</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" className="icon-button">
                   <path fill="currentColor" d="M2 12l1.5-1.5L10 15V3h4v12l6.5-4.5L22 12l-10 9L2 12z" />
                 </svg>
-                <span>Get in Touch</span>
               </a>
               <a
                 href="#projects"
