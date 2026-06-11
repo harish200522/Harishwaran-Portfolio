@@ -249,19 +249,20 @@ const ProjectCard = ({ project, onOpen }) => {
         <div className="flex gap-2">
           <button
             onClick={() => onOpen(project)}
-            className="button flex-1"
+            className="btn-secondary flex-1"
           >
-            See Sample
+            👁 See Sample
           </button>
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="Btn flex-1"
+            className="btn-secondary flex-1"
           >
-            <span className="BG"></span>
-            <span className="svgContainer"><Github size={14} /></span>
-            <span className="text-xs uppercase font-bold">Code</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-1.02-2.44l.06-.06a3.37 3.37 0 0 0-1.02-2.44v-3.87m9.5-11a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M6 5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M12 5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"></path>
+            </svg>
+            Code
           </a>
         </div>
       </div>
@@ -411,9 +412,9 @@ const ContactForm = () => {
       <button
         type="submit"
         disabled={loading}
-        className="bt mx-auto relative"
+        className="btn-primary mx-auto mt-4"
       >
-        <span className="msg"></span>
+        <span>➤</span>
         {loading ? 'Sending...' : 'Send Message'}
       </button>
     </motion.form>
@@ -637,12 +638,10 @@ const App = () => {
                 href={gmailComposeHref}
                 target="_blank"
                 rel="noreferrer"
-                className="hero-get-in-touch"
+                className="btn-primary"
               >
+                <span>↓</span>
                 <span>Get in Touch</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" className="icon-button">
-                  <path fill="currentColor" d="M2 12l1.5-1.5L10 15V3h4v12l6.5-4.5L22 12l-10 9L2 12z" />
-                </svg>
               </a>
               <a
                 href="#projects"
@@ -894,19 +893,22 @@ const App = () => {
             viewport={{ once: true }}
             className="mt-16 flex justify-center gap-4 flex-wrap"
           >
-            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="github-btn group relative inline-flex items-center justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]">
-              <FaGithub size={24} />
-              <span className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
-                GitHub
-              </span>
+            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="btn-social github" aria-label="GitHub Profile">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
             </a>
-            <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="LinkedinBtn">
-              <span className="BG"></span>
-              <span className="svgContainer"><FaLinkedinIn size={24} /></span>
+            <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="btn-social linkedin" aria-label="LinkedIn Profile">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.824 0-9.737h3.554v1.379l-.022.033h.022v-.033c.43-.664 1.195-1.612 2.905-1.612 2.122 0 3.714 1.388 3.714 4.374v5.596zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.953.77-1.715 1.958-1.715 1.187 0 1.915.762 1.915 1.715 0 .953-.728 1.715-1.958 1.715zm1.691 11.597H3.635V9.57h3.393v10.882zM22.224 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.224 0z"/>
+              </svg>
             </a>
-            <a href="https://www.instagram.com/harishwaran_22_/" target="_blank" rel="noreferrer" className="instagram-btn">
-              <span className="BG"></span>
-              <span className="svgContainer"><FaInstagram size={24} /></span>
+            <a href="https://www.instagram.com/harishwaran_22_/" target="_blank" rel="noreferrer" className="btn-social instagram" aria-label="Instagram Profile">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+              </svg>
             </a>
           </motion.div>
         </div>

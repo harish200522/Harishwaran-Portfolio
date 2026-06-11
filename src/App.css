@@ -11,6 +11,22 @@
   --text-muted: #9ca3af;
   --border: rgba(255, 255, 255, 0.1);
   --border-light: rgba(255, 255, 255, 0.05);
+  
+  /* ========== BUTTON DESIGN SYSTEM ========== */
+  --btn-border-radius: 8px;
+  --btn-font-family: 'JetBrains Mono', monospace;
+  --btn-transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --btn-primary-bg: transparent;
+  --btn-primary-border: var(--accent);
+  --btn-primary-text: var(--accent);
+  --btn-primary-hover-bg: var(--accent);
+  --btn-primary-hover-text: #000;
+  --btn-primary-glow: rgba(0, 188, 212, 0.3);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: rgba(255, 255, 255, 0.3);
+  --btn-secondary-text: var(--text-secondary);
+  --btn-secondary-hover-text: var(--accent);
+  --btn-secondary-hover-border: var(--accent);
 }
 
 * {
@@ -157,7 +173,218 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ==================== SCROLLBAR ==================== */
+/* ==================== BUTTON DESIGN SYSTEM ==================== */
+
+/* PRIMARY BUTTON - Download Resume, Send Message */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--btn-font-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--btn-primary-text);
+  background-color: var(--btn-primary-bg);
+  border: 2px solid var(--btn-primary-border);
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--btn-transition);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-hover-text);
+  border-color: var(--btn-primary-hover-bg);
+  box-shadow: 0 0 30px var(--btn-primary-glow), inset 0 0 20px var(--btn-primary-glow);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0px);
+  box-shadow: 0 0 15px var(--btn-primary-glow);
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* SECONDARY BUTTON - See Sample, GitHub */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  font-family: var(--btn-font-family);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--btn-secondary-text);
+  background-color: var(--btn-secondary-bg);
+  border: 1.5px solid var(--btn-secondary-border);
+  border-radius: var(--btn-border-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--btn-transition);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  color: var(--btn-secondary-hover-text);
+  border-color: var(--btn-secondary-hover-border);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.2), inset 0 0 15px rgba(0, 188, 212, 0.1);
+  transform: translateX(2px);
+}
+
+.btn-secondary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--btn-secondary-hover-border);
+  transition: width 0.3s ease;
+}
+
+.btn-secondary:hover::after {
+  width: 100%;
+}
+
+/* SOCIAL ICON BUTTON */
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--btn-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-social svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  transition: inherit;
+}
+
+.btn-social:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+}
+
+/* GITHUB BUTTON */
+.btn-social.github {
+  color: #ffffff;
+}
+
+.btn-social.github:hover {
+  background-color: #333333;
+  border-color: #555555;
+  color: #ffffff;
+}
+
+/* LINKEDIN BUTTON */
+.btn-social.linkedin {
+  color: #ffffff;
+}
+
+.btn-social.linkedin:hover {
+  background-color: #0077b5;
+  border-color: #0077b5;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 119, 181, 0.5);
+}
+
+/* INSTAGRAM BUTTON */
+.btn-social.instagram {
+  color: #ffffff;
+}
+
+.btn-social.instagram:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-color: #bc1888;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(240, 148, 51, 0.4);
+}
+
+/* STAT CARD - CGPA */
+.stat-card {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 188, 212, 0.2);
+  border-radius: var(--btn-border-radius);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: var(--btn-transition);
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  transition: inherit;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+}
+
+.stat-card:hover::before {
+  width: 6px;
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.stat-value {
+  font-family: var(--btn-font-family);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
