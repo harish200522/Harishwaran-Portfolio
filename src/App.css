@@ -565,33 +565,31 @@ h1, h2, h3, h4, h5, h6 {
 
 /* From Uiverse.io by vinodjangid07 */
 .Btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   border: none;
   background-color: transparent;
   position: relative;
-  border-radius: 7px;
   cursor: pointer;
   transition: all .3s;
   color: white;
   text-decoration: none;
-  min-height: 45px;
-  flex: 1;
   padding: 0;
-  overflow: visible;
+  flex: 1;
 }
 
 .svgContainer {
+  position: relative;
   width: 45px;
   height: 45px;
+  min-width: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
   backdrop-filter: blur(0px);
-  letter-spacing: 0.8px;
   border-radius: 7px;
   transition: all .3s;
   border: 1px solid rgba(156, 156, 156, 0.466);
@@ -601,13 +599,15 @@ h1, h2, h3, h4, h5, h6 {
 .BG {
   position: absolute;
   content: "";
-  width: 45px;
-  height: 45px;
+  width: 100%;
+  height: 100%;
   background: #181818;
   z-index: -1;
   border-radius: 7px;
   pointer-events: none;
   transition: all .3s;
+  top: 0;
+  left: 0;
 }
 
 .Btn:hover .BG {
