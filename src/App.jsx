@@ -249,17 +249,19 @@ const ProjectCard = ({ project, onOpen }) => {
         <div className="flex gap-2">
           <button
             onClick={() => onOpen(project)}
-            className="flex-1 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-white font-bold text-xs uppercase transition-colors rounded-lg"
+            className="button flex-1"
           >
-            View
+            See Sample
           </button>
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex-1 px-4 py-2 border border-white/20 hover:border-white/40 text-white font-bold text-xs uppercase transition-colors rounded-lg flex items-center justify-center gap-2"
+            className="Btn flex-1"
           >
-            <Github size={14} /> Code
+            <span className="BG"></span>
+            <span className="svgContainer"><Github size={14} /></span>
+            <span className="text-xs uppercase font-bold">Code</span>
           </a>
         </div>
       </div>
@@ -409,8 +411,9 @@ const ContactForm = () => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold uppercase rounded-lg transition-all disabled:opacity-50"
+        className="bt mx-auto relative"
       >
+        <span className="msg"></span>
         {loading ? 'Sending...' : 'Send Message'}
       </button>
     </motion.form>
@@ -634,15 +637,29 @@ const App = () => {
                 href={gmailComposeHref}
                 target="_blank"
                 rel="noreferrer"
-                className="px-6 sm:px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-bold uppercase text-sm rounded-lg transition-all"
+                className="hero-get-in-touch"
               >
-                Get in Touch
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M2 12l1.5-1.5L10 15V3h4v12l6.5-4.5L22 12l-10 9L2 12z" />
+                </svg>
+                <span>Get in Touch</span>
               </a>
               <a
                 href="#projects"
-                className="px-6 sm:px-8 py-3 border border-cyan-500 text-cyan-400 font-bold uppercase text-sm rounded-lg hover:bg-cyan-500/10 transition-all"
+                className="continue-application"
               >
-                View My Work
+                <div>
+                  <div className="folder">
+                    <div className="top">
+                      <svg viewBox="0 0 24 27" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <path d="M1 6h8l3 4h11a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" />
+                      </svg>
+                    </div>
+                    <div className="paper"></div>
+                  </div>
+                  <div className="pencil"></div>
+                </div>
+                <span>View My Work</span>
               </a>
             </div>
 
@@ -689,9 +706,9 @@ const App = () => {
               <a
                 href="/resume.pdf"
                 download="Harishwaran_VS_Resume.pdf"
-                className="px-6 py-2 bg-white text-[#121212] rounded-full font-bold uppercase text-xs hover:bg-slate-100 transition-colors"
+                className="Download-button"
               >
-                📥 Download Resume
+                Download Resume
               </a>
             </div>
           </motion.div>
@@ -856,15 +873,15 @@ const App = () => {
             <div className="w-12 h-1 bg-cyan-500 mx-auto mb-8"></div>
             
             <div className="flex flex-wrap gap-4 justify-center mb-12">
-              <span className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm font-bold text-slate-300">
+              <button type="button" className="btn">
                 💼 Full-time Opportunities
-              </span>
-              <span className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm font-bold text-slate-300">
+              </button>
+              <button type="button" className="btn">
                 🚀 Internships
-              </span>
-              <span className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm font-bold text-slate-300">
+              </button>
+              <button type="button" className="btn">
                 💻 Freelance Projects
-              </span>
+              </button>
             </div>
           </motion.div>
 
@@ -877,14 +894,19 @@ const App = () => {
             viewport={{ once: true }}
             className="mt-16 flex justify-center gap-4 flex-wrap"
           >
-            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors">
+            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="github-btn group relative inline-flex items-center justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]">
               <FaGithub size={24} />
+              <span className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
+                GitHub
+              </span>
             </a>
-            <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors">
-              <FaLinkedinIn size={24} />
+            <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="LinkedinBtn">
+              <span className="BG"></span>
+              <span className="svgContainer"><FaLinkedinIn size={24} /></span>
             </a>
-            <a href="https://www.instagram.com/harishwaran_22_/" target="_blank" rel="noreferrer" className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors">
-              <FaInstagram size={24} />
+            <a href="https://www.instagram.com/harishwaran_22_/" target="_blank" rel="noreferrer" className="instagram-btn">
+              <span className="BG"></span>
+              <span className="svgContainer"><FaInstagram size={24} /></span>
             </a>
           </motion.div>
         </div>
