@@ -73,11 +73,10 @@ const TERMINAL_COMMANDS = [
 ];
 
 const SKILLS_CATEGORIZED = {
-  'Languages': ['Python', 'Java', 'JavaScript', 'C/C++', 'SQL'],
-  'Frameworks': ['React', 'Node.js', 'Express.js', 'FastAPI'],
+  'Languages': ['Python', 'Java', 'JavaScript', 'SQL'],
+  'Frameworks': ['React', 'Node.js', 'FastAPI'],
   'Databases': ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'],
-  'AI/ML Tools': ['TensorFlow', 'Claude AI', 'Hugging Face', 'RAG Systems'],
-  'Cloud & DevOps': ['Git', 'Docker', 'Firebase', 'Netlify']
+  'Tools': ['Git', 'Netlify']
 };
 
 // ==================== COMPONENTS ====================
