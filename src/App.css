@@ -15,19 +15,13 @@
   /* ========== BUTTON DESIGN SYSTEM ========== */
   --btn-border-radius: 8px;
   --btn-font-family: 'JetBrains Mono', monospace;
-  --btn-transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  --btn-primary-bg: rgba(0, 188, 212, 0.08);
-  --btn-primary-border: var(--accent);
-  --btn-primary-text: var(--accent);
-  --btn-primary-hover-bg: var(--accent);
+  --btn-transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --btn-primary-bg: linear-gradient(135deg, #0097a7 0%, #00bcd4 100%);
+  --btn-primary-border: #00bcd4;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: linear-gradient(135deg, #00bcd4 0%, #4dd0e1 100%);
   --btn-primary-hover-text: #000;
-  --btn-primary-glow: rgba(0, 188, 212, 0.5);
-  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
-  --btn-secondary-border: rgba(0, 188, 212, 0.6);
-  --btn-secondary-text: var(--accent);
-  --btn-secondary-hover-text: #000;
-  --btn-secondary-hover-bg: var(--accent);
-  --btn-secondary-hover-border: var(--accent);
+  --btn-primary-glow: rgba(0, 188, 212, 0.8);
 }
 
 * {
@@ -176,40 +170,40 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ==================== BUTTON DESIGN SYSTEM ==================== */
 
-/* PRIMARY BUTTON - Download Resume, Send Message */
+/* PRIMARY BUTTON - Download Resume, Get in Touch, Send Message */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
   font-family: var(--btn-font-family);
   font-size: 15px;
-  font-weight: 600;
-  color: var(--btn-primary-text);
-  background-color: var(--btn-primary-bg);
-  border: 2px solid var(--btn-primary-border);
-  border-radius: var(--btn-border-radius);
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0097a7 0%, #00bcd4 100%);
+  border: 2px solid #00bcd4;
+  border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   transition: var(--btn-transition);
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.05em;
-  box-shadow: 0 0 15px rgba(0, 188, 212, 0.25);
+  letter-spacing: 0.08em;
+  box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
 }
 
 .btn-primary:hover {
-  background-color: var(--btn-primary-hover-bg);
-  color: var(--btn-primary-hover-text);
-  border-color: var(--btn-primary-hover-bg);
-  box-shadow: 0 0 40px var(--btn-primary-glow), inset 0 0 20px rgba(0, 188, 212, 0.2);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #00bcd4 0%, #4dd0e1 100%);
+  border-color: #4dd0e1;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 188, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 30px rgba(0, 188, 212, 0.6);
 }
 
 .btn-primary:active {
-  transform: translateY(0px);
-  box-shadow: 0 0 15px var(--btn-primary-glow);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
 }
 
 .btn-primary::before {
@@ -219,44 +213,49 @@ h1, h2, h3, h4, h5, h6 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s;
+  z-index: 1;
 }
 
 .btn-primary:hover::before {
   left: 100%;
 }
 
-/* SECONDARY BUTTON - See Sample, GitHub */
+/* SECONDARY BUTTON - See Sample, Code */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.2rem;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
   font-family: var(--btn-font-family);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--btn-secondary-text);
-  background-color: var(--btn-secondary-bg);
-  border: 1.5px solid var(--btn-secondary-border);
-  border-radius: var(--btn-border-radius);
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.2) 0%, rgba(0, 188, 212, 0.3) 100%);
+  border: 2px solid #00bcd4;
+  border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
   transition: var(--btn-transition);
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: 0 0 10px rgba(0, 188, 212, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary:hover {
-  color: var(--btn-secondary-hover-text);
-  background-color: var(--btn-secondary-hover-bg);
-  border-color: var(--btn-secondary-hover-border);
-  box-shadow: 0 0 25px rgba(0, 188, 212, 0.4), inset 0 0 15px rgba(0, 188, 212, 0.2);
-  transform: translateX(2px);
+  color: #000;
+  background: linear-gradient(135deg, #00bcd4 0%, #4dd0e1 100%);
+  border-color: #4dd0e1;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 188, 212, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 0 25px rgba(0, 188, 212, 0.5);
+}
+
+.btn-secondary:active {
+  transform: translateY(0px);
 }
 
 .btn-secondary::after {
@@ -264,14 +263,16 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 0;
-  height: 2px;
-  background: var(--btn-secondary-hover-border);
-  transition: width 0.3s ease;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #4dd0e1, transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease;
 }
 
 .btn-secondary:hover::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 /* SOCIAL ICON BUTTON */
@@ -279,29 +280,45 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
   padding: 0;
-  background-color: rgba(0, 188, 212, 0.1);
-  border: 1.5px solid rgba(0, 188, 212, 0.4);
-  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.15) 0%, rgba(0, 188, 212, 0.25) 100%);
+  border: 2.5px solid #00bcd4;
+  border-radius: 10px;
   cursor: pointer;
   transition: var(--btn-transition);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 188, 212, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-size: 28px;
 }
 
 .btn-social svg {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   fill: currentColor;
   transition: inherit;
+  z-index: 2;
+  position: relative;
 }
 
 .btn-social:hover {
-  transform: scale(1.12);
-  box-shadow: 0 0 30px rgba(0, 188, 212, 0.6);
+  transform: scale(1.15) translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 188, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-social::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-social:hover::before {
+  opacity: 1;
 }
 
 /* GITHUB BUTTON */
@@ -309,11 +326,22 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
+.btn-social.github::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #333 0%, #555 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
 .btn-social.github:hover {
-  background-color: #222222;
   border-color: #ffffff;
-  color: #ffffff;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+.btn-social.github:hover::after {
+  opacity: 1;
 }
 
 /* LINKEDIN BUTTON */
@@ -321,11 +349,23 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
+.btn-social.linkedin::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0077b5 0%, #00a8e8 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
 .btn-social.linkedin:hover {
-  background-color: #0077b5;
-  border-color: #00a0d2;
-  color: #ffffff;
-  box-shadow: 0 0 30px rgba(0, 119, 181, 0.7);
+  border-color: #00a8e8;
+  box-shadow: 0 15px 40px rgba(0, 119, 181, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-social.linkedin:hover::after {
+  opacity: 1;
 }
 
 /* INSTAGRAM BUTTON */
@@ -333,23 +373,36 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
+.btn-social.instagram::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
 .btn-social.instagram:hover {
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   border-color: #f09433;
-  color: #ffffff;
-  box-shadow: 0 0 30px rgba(240, 148, 51, 0.7);
+  box-shadow: 0 15px 40px rgba(240, 148, 51, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-social.instagram:hover::after {
+  opacity: 1;
 }
 
 /* STAT CARD - CGPA */
 .stat-card {
   position: relative;
-  padding: 1.5rem;
-  background: rgba(0, 188, 212, 0.05);
-  border: 2px solid rgba(0, 188, 212, 0.4);
-  border-radius: var(--btn-border-radius);
-  backdrop-filter: blur(10px);
+  padding: 1.8rem;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.12) 0%, rgba(0, 188, 212, 0.08) 100%);
+  border: 2.5px solid #00bcd4;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
   overflow: hidden;
   transition: var(--btn-transition);
+  box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .stat-card::before {
@@ -359,19 +412,21 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, var(--accent), transparent);
-  transition: inherit;
+  background: linear-gradient(180deg, #00bcd4, #0097a7);
+  box-shadow: 0 0 15px #00bcd4;
+  transition: all 0.4s ease;
 }
 
 .stat-card:hover {
-  background: rgba(0, 188, 212, 0.12);
-  border-color: var(--accent);
-  box-shadow: 0 0 30px rgba(0, 188, 212, 0.4), inset 0 0 20px rgba(0, 188, 212, 0.1);
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.18) 0%, rgba(0, 188, 212, 0.12) 100%);
+  border-color: #4dd0e1;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 188, 212, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 30px rgba(0, 188, 212, 0.3);
 }
 
 .stat-card:hover::before {
-  width: 6px;
-  box-shadow: 0 0 15px var(--accent);
+  width: 7px;
+  box-shadow: 0 0 25px #00bcd4;
 }
 
 .stat-value {
