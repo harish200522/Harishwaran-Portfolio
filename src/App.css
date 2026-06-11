@@ -565,6 +565,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* From Uiverse.io by vinodjangid07 */
 .Btn {
+  width: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -572,6 +573,8 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   background-color: transparent;
   position: relative;
+  overflow: hidden;
+  border-radius: 7px;
   cursor: pointer;
   transition: all .3s;
   color: white;
@@ -581,18 +584,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .svgContainer {
-  position: relative;
   width: 45px;
   height: 45px;
-  min-width: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
   backdrop-filter: blur(0px);
-  border-radius: 7px;
+  letter-spacing: 0.8px;
+  border-radius: 10px;
   transition: all .3s;
   border: 1px solid rgba(156, 156, 156, 0.466);
+  position: relative;
+  z-index: 2;
   flex-shrink: 0;
 }
 
@@ -602,8 +606,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   background: #181818;
-  z-index: -1;
-  border-radius: 7px;
+  z-index: 1;
+  border-radius: 10px;
   pointer-events: none;
   transition: all .3s;
   top: 0;
@@ -612,7 +616,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .Btn:hover .BG {
   transform: rotate(35deg);
-  transform-origin: center;
+  transform-origin: bottom;
 }
 
 .Btn:hover .svgContainer {
@@ -774,6 +778,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   background-color: transparent;
   position: relative;
+  overflow: hidden;
   border-radius: 7px;
   cursor: pointer;
   transition: all .3s;
@@ -791,6 +796,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   transition: all .3s;
   border: 1px solid rgba(156, 156, 156, 0.466);
+  position: relative;
+  z-index: 2;
 }
 
 .instagram-btn .BG {
@@ -803,10 +810,12 @@ h1, h2, h3, h4, h5, h6 {
   background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
   background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
-  z-index: -1;
+  z-index: 1;
   border-radius: 9px;
   pointer-events: none;
   transition: all .3s;
+  top: 0;
+  left: 0;
 }
 
 .instagram-btn:hover .BG {
