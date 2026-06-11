@@ -80,14 +80,6 @@ const SKILLS_CATEGORIZED = {
   'Cloud & DevOps': ['Git', 'Docker', 'Firebase', 'Netlify']
 };
 
-const PROFICIENCY_SKILLS = [
-  { name: 'Python', level: 85 },
-  { name: 'React', level: 78 },
-  { name: 'Java', level: 75 },
-  { name: 'SQL', level: 82 },
-  { name: 'AI/ML', level: 72 }
-];
-
 // ==================== COMPONENTS ====================
 
 const TypingEffect = ({ words }) => {
@@ -212,32 +204,6 @@ const ParticleBackground = () => {
           }}
         />
       ))}
-    </div>
-  );
-};
-
-// Skill Proficiency Bar
-const ProficiencyBar = ({ skill, level }) => {
-  return (
-    <div className="space-y-2">
-      <div className="flex justify-between items-center">
-        <span className="font-bold text-slate-300 text-sm uppercase tracking-wider">{skill}</span>
-        <span className="text-cyan-400 font-black text-xs">{level}%</span>
-      </div>
-      <motion.div
-        className="w-full h-2 bg-slate-800 rounded-full overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <motion.div
-          className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
-        />
-      </motion.div>
     </div>
   );
 };
@@ -716,13 +682,6 @@ const App = () => {
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
               I'm Harishwaran V S, a passionate AI & Data Science student at M. Kumarasamy College of Engineering (2027). I specialize in building intelligent web applications that combine cutting-edge AI with full-stack development. My expertise spans Python machine learning, RAG-based AI systems, React frontend architecture, and cloud deployment. I'm actively seeking full-time opportunities to contribute to innovative projects.
             </p>
-
-            {/* Skill Proficiency Bars */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-12">
-              {PROFICIENCY_SKILLS.map((skill, i) => (
-                <ProficiencyBar key={i} skill={skill.name} level={skill.level} />
-              ))}
-            </div>
 
             <div className="flex flex-wrap gap-4 justify-center pt-8">
               <div className="px-6 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 text-xs font-bold uppercase">
