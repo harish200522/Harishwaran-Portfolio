@@ -712,27 +712,28 @@ const App = () => {
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
             {Object.entries(SKILLS_CATEGORIZED).map(([category, skills]) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                className="p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/30 transition-all"
               >
                 <h3 className="font-bold text-cyan-400 uppercase text-sm tracking-widest mb-4">{category}</h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="space-y-2">
                   {skills.map((skill, i) => (
-                    <motion.span
+                    <motion.div
                       key={i}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.05 }}
-                      className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-slate-300 font-medium hover:border-cyan-500/50 hover:bg-white/10 transition-all"
+                      transition={{ delay: i * 0.1 }}
+                      className="text-sm text-slate-300 font-medium"
                     >
-                      {skill}
-                    </motion.span>
+                      • {skill}
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
