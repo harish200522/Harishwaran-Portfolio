@@ -175,10 +175,10 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.9rem 2rem;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
   font-family: var(--btn-font-family);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   color: #ffffff;
   background: linear-gradient(135deg, #0097a7 0%, #00bcd4 100%);
@@ -190,8 +190,15 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   letter-spacing: 0.08em;
-  box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 188, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+  }
 }
 
 .btn-primary:hover {
@@ -227,10 +234,10 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
   font-family: var(--btn-font-family);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   color: #ffffff;
   background: linear-gradient(135deg, rgba(0, 188, 212, 0.2) 0%, rgba(0, 188, 212, 0.3) 100%);
@@ -243,7 +250,14 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .btn-secondary {
+    padding: 0.4rem 0.8rem;
+    font-size: 11px;
+  }
 }
 
 .btn-secondary:hover {
@@ -280,23 +294,23 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
   padding: 0;
   background: linear-gradient(135deg, rgba(0, 188, 212, 0.15) 0%, rgba(0, 188, 212, 0.25) 100%);
-  border: 2.5px solid #00bcd4;
-  border-radius: 10px;
+  border: 2px solid #00bcd4;
+  border-radius: 8px;
   cursor: pointer;
   transition: var(--btn-transition);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  font-size: 28px;
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
+  font-size: 24px;
 }
 
 .btn-social svg {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   fill: currentColor;
   transition: inherit;
   z-index: 2;
@@ -304,8 +318,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-social:hover {
-  transform: scale(1.15) translateY(-4px);
-  box-shadow: 0 15px 35px rgba(0, 188, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.35);
 }
 
 .btn-social::before {
@@ -319,6 +333,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-social:hover::before {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .btn-social {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: 1.5px solid #00bcd4;
+  }
+  
+  .btn-social svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* GITHUB BUTTON */
@@ -337,7 +365,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-social.github:hover {
-  border-color: #ffffff;
+  border-color: #00bcd4;
 }
 
 .btn-social.github:hover::after {
@@ -360,8 +388,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-social.linkedin:hover {
-  border-color: #00a8e8;
-  box-shadow: 0 15px 40px rgba(0, 119, 181, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #00bcd4;
+  box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3);
 }
 
 .btn-social.linkedin:hover::after {
@@ -384,8 +412,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-social.instagram:hover {
-  border-color: #f09433;
-  box-shadow: 0 15px 40px rgba(240, 148, 51, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #00bcd4;
+  box-shadow: 0 8px 20px rgba(240, 148, 51, 0.3);
 }
 
 .btn-social.instagram:hover::after {
@@ -395,14 +423,14 @@ h1, h2, h3, h4, h5, h6 {
 /* STAT CARD - CGPA */
 .stat-card {
   position: relative;
-  padding: 1.8rem;
+  padding: 1.5rem;
   background: linear-gradient(135deg, rgba(0, 188, 212, 0.12) 0%, rgba(0, 188, 212, 0.08) 100%);
   border: 2.5px solid #00bcd4;
-  border-radius: 10px;
+  border-radius: 8px;
   backdrop-filter: blur(15px);
   overflow: hidden;
   transition: var(--btn-transition);
-  box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 188, 212, 0.2);
 }
 
 .stat-card::before {
@@ -413,33 +441,51 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   width: 4px;
   background: linear-gradient(180deg, #00bcd4, #0097a7);
-  box-shadow: 0 0 15px #00bcd4;
+  box-shadow: 0 0 12px #00bcd4;
   transition: all 0.4s ease;
 }
 
 .stat-card:hover {
   background: linear-gradient(135deg, rgba(0, 188, 212, 0.18) 0%, rgba(0, 188, 212, 0.12) 100%);
   border-color: #4dd0e1;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 188, 212, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 30px rgba(0, 188, 212, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
 }
 
 .stat-card:hover::before {
-  width: 7px;
-  box-shadow: 0 0 25px #00bcd4;
+  width: 6px;
+  box-shadow: 0 0 20px #00bcd4;
 }
 
 .stat-value {
   font-family: var(--btn-font-family);
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--accent);
 }
 
 .stat-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 1.2rem;
+    border: 2px solid #00bcd4;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 10px;
+  }
+}
   letter-spacing: 0.1em;
   margin-top: 0.5rem;
 }
