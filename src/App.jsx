@@ -640,7 +640,7 @@ const App = () => {
                 rel="noreferrer"
                 className="btn-primary"
               >
-                <span>↓</span>
+                <span>📧</span>
                 <span>Get in Touch</span>
               </a>
               <a
@@ -705,9 +705,10 @@ const App = () => {
               <a
                 href="/resume.pdf"
                 download="Harishwaran_VS_Resume.pdf"
-                className="Download-button"
+                className="btn-primary"
               >
-                Download Resume
+                <span>📄</span>
+                <span>Download Resume</span>
               </a>
             </div>
           </motion.div>
