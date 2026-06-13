@@ -166,7 +166,7 @@ const GlitchName = () => {
       transition={{ duration: 0.8 }}
       className="relative"
     >
-      <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white leading-[0.92] tracking-tighter uppercase">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[0.92] tracking-tighter uppercase">
         Harishwaran
         <motion.span
           animate={{ textShadow: ['0 0 0 rgba(0,188,212,0)', '0 0 10px rgba(0,188,212,0.5)', '0 0 0 rgba(0,188,212,0)'] }}
@@ -698,7 +698,7 @@ const App = () => {
         </AnimatePresence>
 
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center text-center lg:text-left">
-          <div className="lg:col-span-7 z-10">
+          <div className="lg:col-span-8 z-10">
             <div className="text-cyan-400 font-bold text-xs sm:text-sm tracking-[0.25em] uppercase mb-2 font-mono">
               HI, I AM
             </div>
@@ -759,7 +759,7 @@ const App = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4 w-full max-w-md lg:ml-auto">
             <AnimatedTerminal />
           </div>
         </div>
