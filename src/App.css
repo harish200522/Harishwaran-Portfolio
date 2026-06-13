@@ -1,5 +1,6 @@
 /* ==================== GLOBAL STYLES ==================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap');
+@import './App.responsive.css';
 
 :root {
   --primary: #121212;

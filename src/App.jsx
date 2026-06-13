@@ -609,7 +609,7 @@ const App = () => {
       <BackToTopButton isVisible={showBackToTop} onClick={scrollToTop} />
 
       {/* ========== HERO SECTION ========== */}
-      <section className="relative min-h-screen flex items-center pt-24 md:pt-20 px-4 sm:px-6 lg:px-20 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-32 pb-12 sm:pt-24 md:pt-20 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
         <ParticleBackground />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
         
@@ -617,21 +617,21 @@ const App = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-32 right-8 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full text-green-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2"
+          className="fixed top-24 right-4 sm:right-6 md:right-8 z-40 px-3 sm:px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full text-green-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2"
         >
           <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
           Open to Work
         </motion.div>
 
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center text-center lg:text-left">
+        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center text-center lg:text-left">
           <div className="lg:col-span-7 z-10">
             <GlitchName />
             
-            <div className="text-lg sm:text-xl md:text-2xl font-medium text-slate-300 mb-10 h-auto md:h-10 font-mono tracking-wide mt-6">
+            <div className="text-base sm:text-lg md:text-xl font-medium text-slate-300 mb-8 sm:mb-10 h-auto font-mono tracking-wide mt-6">
               {">"} <TypingEffect words={words} />
             </div>
 
-            <p className="text-sm sm:text-base text-slate-400 mb-8 max-w-xl">
+            <p className="text-xs sm:text-sm md:text-base text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0">
               Final-year B.Tech AI & Data Science student building intelligent systems with React, Python, and AI. Passionate about RAG systems, full-stack development, and solving real-world problems.
             </p>
 
@@ -689,8 +689,8 @@ const App = () => {
       </section>
 
       {/* ========== PROFILE SECTION ========== */}
-      <section id="profile" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
-        <div className="max-w-5xl mx-auto">
+      <section id="profile" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#0f0f0f]">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -698,11 +698,11 @@ const App = () => {
             className="space-y-12"
           >
             <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">About Me</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">About Me</h2>
               <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
             </div>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed text-center max-w-3xl mx-auto px-2 sm:px-4">
               I'm Harishwaran V S, a passionate AI & Data Science student at M. Kumarasamy College of Engineering (2027). I specialize in building intelligent web applications that combine cutting-edge AI with full-stack development. My expertise spans Python machine learning, RAG-based AI systems, React frontend architecture, and cloud deployment. I'm actively seeking full-time opportunities to contribute to innovative projects.
             </p>
 
@@ -723,7 +723,7 @@ const App = () => {
       </section>
 
       {/* ========== SKILLS SECTION ========== */}
-      <section id="skills" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121212]">
+      <section id="skills" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#121212]">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -731,20 +731,20 @@ const App = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">Tech Stack</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Tech Stack</h2>
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
             {Object.entries(SKILLS_CATEGORIZED).map(([category, skills]) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/30 transition-all"
+                className="p-4 sm:p-5 md:p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500/30 transition-all"
               >
-                <h3 className="font-bold text-cyan-400 uppercase text-sm tracking-widest mb-4">{category}</h3>
+                <h3 className="font-bold text-cyan-400 uppercase text-xs sm:text-sm tracking-widest mb-4">{category}</h3>
                 <div className="space-y-2">
                   {skills.map((skill, i) => (
                     <motion.div
@@ -766,19 +766,19 @@ const App = () => {
       </section>
 
       {/* ========== PROJECTS SECTION ========== */}
-      <section id="projects" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
-        <div className="max-w-7xl mx-auto">
+      <section id="projects" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#0f0f0f]">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">Featured Projects</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Featured Projects</h2>
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             {projects.map((project, i) => (
               <ProjectCard
                 key={i}
@@ -794,15 +794,15 @@ const App = () => {
       </section>
 
       {/* ========== EXPERIENCE SECTION ========== */}
-      <section id="experience" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121212]">
-        <div className="max-w-5xl mx-auto">
+      <section id="experience" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#121212]">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">Experience</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Experience</h2>
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
@@ -810,7 +810,7 @@ const App = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative p-8 bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-3xl hover:border-cyan-500/30 transition-all"
+            className="relative p-6 sm:p-8 md:p-10 bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-3xl hover:border-cyan-500/30 transition-all"
           >
             <div className="flex items-start gap-4 mb-4">
               <Briefcase className="text-cyan-400 flex-shrink-0 mt-1" size={28} />
@@ -830,19 +830,19 @@ const App = () => {
       </section>
 
       {/* ========== CERTIFICATES SECTION ========== */}
-      <section id="certificates" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
-        <div className="max-w-5xl mx-auto">
+      <section id="certificates" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#0f0f0f]">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">Certificates</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Certificates</h2>
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
             {certificates.map((cert, i) => (
               <motion.button
                 key={i}
@@ -868,18 +868,18 @@ const App = () => {
       </section>
 
       {/* ========== CONTACT SECTION ========== */}
-      <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121212]">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#121212]">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter mb-4">Get in Touch</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Get in Touch</h2>
             <div className="w-12 h-1 bg-cyan-500 mx-auto mb-8"></div>
             
-            <div className="flex flex-wrap gap-4 justify-center mb-12">
+            <div className="flex flex-wrap gap-2 sm:gap-4 justify-center mb-12">
               <button type="button" className="btn">
                 💼 Full-time Opportunities
               </button>
@@ -932,17 +932,17 @@ const App = () => {
       </section>
 
       {/* ========== FOOTER ========== */}
-      <footer className="py-12 px-4 sm:px-6 border-t border-white/5 bg-[#0f0f0f]">
+      <footer className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#0f0f0f]">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="max-w-6xl mx-auto text-center"
         >
-          <div className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-2">
+          <div className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-2">
             HW.
           </div>
-          <p className="text-slate-500 italic font-medium text-sm mb-4">
+          <p className="text-slate-500 italic font-medium text-xs sm:text-sm mb-4">
             "Designing the web, building the future"
           </p>
           <p className="text-slate-600 text-xs font-black uppercase tracking-widest">
