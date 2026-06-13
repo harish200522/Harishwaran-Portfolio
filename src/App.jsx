@@ -558,6 +558,7 @@ const App = () => {
   const [isDark, setIsDark] = useState(true);
   const [selectedCert, setSelectedCert] = useState(null);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [showBadge, setShowBadge] = useState(true);
 
   const contactEmail = 'vsharishwaran@gmail.com';
   const gmailComposeHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}`;
@@ -631,6 +632,7 @@ const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
+      setShowBadge(window.scrollY < 150); // Hide badge after scrolling 150px
       
       const sections = NAV_ITEMS.map(item => document.getElementById(item.id)).filter(Boolean);
       const observer = new IntersectionObserver(
@@ -668,14 +670,21 @@ const App = () => {
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
         
         {/* Open to Work Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed top-24 right-4 sm:right-6 md:right-8 z-40 px-3 sm:px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full text-green-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2"
-        >
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-          Open to Work
-        </motion.div>
+        <AnimatePresence>
+          {showBadge && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-20 right-3 sm:right-4 md:right-6 z-40 px-2 sm:px-3 py-1.5 bg-green-500/20 border border-green-500/50 rounded-full text-green-400 text-[10px] sm:text-xs font-bold uppercase tracking-wide flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span className="hidden sm:inline">Open to Work</span>
+              <span className="sm:hidden">Hiring</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center text-center lg:text-left">
           <div className="lg:col-span-7 z-10">
@@ -689,12 +698,12 @@ const App = () => {
               Final-year B.Tech AI & Data Science student building intelligent systems with React, Python, and AI. Passionate about RAG systems, full-stack development, and solving real-world problems.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-6 justify-center lg:justify-start">
+            <div className="flex flex-row flex-wrap gap-4 mb-6 justify-center lg:justify-start">
               <a
                 href={gmailComposeHref}
                 target="_blank"
                 rel="noreferrer"
-                className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group"
+                className="relative inline-flex w-fit items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group"
               >
                 <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4">
                   <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
@@ -703,7 +712,7 @@ const App = () => {
                   <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
                 </span>
                 <span className="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full bg-indigo-600 rounded-md group-hover:translate-x-0"></span>
-                <span className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">Get in Touch</span>
+                <span className="relative text-white transition-colors duration-200 ease-in-out group-hover:text-white whitespace-nowrap">Get in Touch</span>
               </a>
               <a
                 href="#projects"
@@ -760,9 +769,9 @@ const App = () => {
               I'm Harishwaran V S, a passionate AI & Data Science student at M. Kumarasamy College of Engineering (2027). I specialize in building intelligent web applications that combine cutting-edge AI with full-stack development. My expertise spans Python machine learning, RAG-based AI systems, React frontend architecture, and cloud deployment. I'm actively seeking full-time opportunities to contribute to innovative projects.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center pt-8">
-              <div className="px-6 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 text-xs font-bold uppercase">
-                CGPA: 7.3
+            <div className="flex flex-row flex-wrap gap-4 justify-center pt-8 items-center">
+              <div className="inline-flex items-center gap-2 px-5 py-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-cyan-400 text-sm font-bold uppercase tracking-widest whitespace-nowrap">
+                <span className="text-cyan-300">🎓</span> CGPA: 7.3
               </div>
               <a
                 href="/resume.pdf"
