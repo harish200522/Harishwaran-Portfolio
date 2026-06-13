@@ -299,7 +299,7 @@ const ProjectCard = ({ project, onOpen }) => {
           >
             <span className="BG"></span>
             <span className="svgContainer"><Github size={14} /></span>
-            <span className="text-xs uppercase font-bold">Code</span>
+            <span className="text-xs uppercase font-bold">View on GitHub</span>
           </a>
         </div>
       </div>

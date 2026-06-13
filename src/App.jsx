@@ -264,7 +264,7 @@ const ProjectCard = ({ project, onOpen }) => {
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-1.02-2.44l.06-.06a3.37 3.37 0 0 0-1.02-2.44v-3.87m9.5-11a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M6 5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M12 5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"></path>
               </svg>
             </span>
-            <span className="text-xs uppercase font-bold">Code</span>
+            <span className="text-xs uppercase font-bold">View on GitHub</span>
           </a>
         </div>
       </div>
