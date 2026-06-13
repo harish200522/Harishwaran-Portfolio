@@ -368,16 +368,59 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError(null);
+    setSent(false);
+
+    // Replace this string with your actual Web3Forms Access Key from https://web3forms.com/
+    const accessKey = "YOUR_WEB3FORMS_ACCESS_KEY";
+
+    if (accessKey === "YOUR_WEB3FORMS_ACCESS_KEY") {
+      // Mock submit simulation if key is not configured yet (degrades gracefully)
+      setTimeout(() => {
+        setLoading(false);
+        setSent(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSent(false), 4000);
+      }, 1000);
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          from_name: "Portfolio Visitor",
+          subject: `New Message from Portfolio: ${formData.name}`
+        })
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSent(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSent(false), 5000);
+      } else {
+        throw new Error(data.message || "Failed to submit form.");
+      }
+    } catch (err) {
+      console.error("Web3Forms submission error:", err);
+      setError(err.message || "Unable to send message. Please try again later.");
+    } finally {
       setLoading(false);
-      setSent(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setSent(false), 4000);
-    }, 1000);
+    }
   };
 
   return (
@@ -421,6 +464,15 @@ const ContactForm = () => {
           className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm font-bold"
         >
           ✓ Message sent successfully!
+        </motion.div>
+      )}
+      {error && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm font-bold"
+        >
+          ⚠ {error}
         </motion.div>
       )}
       <button
@@ -970,10 +1022,16 @@ const App = () => {
               </div>
 
               {/* Availability Badges */}
-              <div className="flex flex-col items-start gap-2.5 sm:gap-3">
-                <span className="btn">💼 Full-time Opportunities</span>
-                <span className="btn">🚀 Internships</span>
-                <span className="btn">💻 Freelance Projects</span>
+              <div className="flex flex-col items-start gap-3 w-full sm:w-auto">
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-cyan-500/5 border border-cyan-500/20 rounded-xl text-cyan-400 text-xs sm:text-sm font-bold uppercase tracking-wider w-full sm:w-fit shadow-[0_0_15px_rgba(6,182,212,0.05)]">
+                  <span>💼</span> Full-time Opportunities
+                </div>
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-cyan-500/5 border border-cyan-500/20 rounded-xl text-cyan-400 text-xs sm:text-sm font-bold uppercase tracking-wider w-full sm:w-fit shadow-[0_0_15px_rgba(6,182,212,0.05)]">
+                  <span>🚀</span> Internships
+                </div>
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-cyan-500/5 border border-cyan-500/20 rounded-xl text-cyan-400 text-xs sm:text-sm font-bold uppercase tracking-wider w-full sm:w-fit shadow-[0_0_15px_rgba(6,182,212,0.05)]">
+                  <span>💻</span> Freelance Projects
+                </div>
               </div>
             </motion.div>
 
