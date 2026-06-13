@@ -1,7 +1,22 @@
 /* ==================== PROFESSIONAL RESPONSIVE LAYOUT SYSTEM ==================== */
 /* Comprehensive responsive design fixes for premium portfolio appearance */
 
-/* ==================== CONTACT BUTTONS RESPONSIVE ==================== */
+/* ==================== NAVBAR RESPONSIVE ==================== */
+
+section {
+  scroll-margin-top: 5.5rem; /* Account for navbar height */
+}
+
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 6rem; /* Adjusted for mobile navbar with dropdown space */
+  }
+  
+  /* Prevent body overflow when mobile menu is open */
+  body.menu-open {
+    overflow-y: hidden;
+  }
+}
 
 .btn-contact {
   outline: 0;

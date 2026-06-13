@@ -25,7 +25,8 @@ import {
   ArrowUp,
   Sun,
   Moon,
-  Send
+  Send,
+  Menu
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
@@ -456,9 +457,10 @@ const ThemeToggle = ({ isDark, onChange }) => {
   );
 };
 
-// Navbar with sticky blur effect
+// Navbar with sticky blur effect - Responsive for mobile
 const Navbar = ({ activeSection, isDark }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -472,26 +474,78 @@ const Navbar = ({ activeSection, isDark }) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false); // Close menu after navigation
     }
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 px-4 md:px-8 py-4 transition-all duration-300 ${isScrolled ? 'bg-[#171717]/80 backdrop-blur-xl border-b border-white/10' : ''}`}>
-      <div className="max-w-6xl mx-auto flex items-center justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em] min-w-max">
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => scrollToSection(item.id)}
-              className={`relative transition-all duration-300 group uppercase whitespace-nowrap px-1 py-1 rounded-md ${activeSection === item.id ? 'text-white' : 'text-slate-400 hover:text-slate-100'}`}
-            >
-              {item.name}
-              <span className={`absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${activeSection === item.id ? 'w-full opacity-90' : 'w-0 opacity-60 group-hover:w-full'}`}></span>
-            </button>
-          ))}
+    <>
+      {/* Desktop & Tablet Navbar */}
+      <nav className={`fixed top-0 w-full z-50 px-4 sm:px-6 md:px-8 py-4 transition-all duration-300 ${isScrolled ? 'bg-[#171717]/80 backdrop-blur-xl border-b border-white/10' : ''}`}>
+        {/* Desktop: Traditional horizontal nav (visible on md+) */}
+        <div className="hidden md:flex max-w-6xl mx-auto items-center justify-center">
+          <div className="flex items-center justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+            <div className="flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em]">
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative transition-all duration-300 group uppercase whitespace-nowrap px-1 py-1 rounded-md ${activeSection === item.id ? 'text-white' : 'text-slate-400 hover:text-slate-100'}`}
+                >
+                  {item.name}
+                  <span className={`absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${activeSection === item.id ? 'w-full opacity-90' : 'w-0 opacity-60 group-hover:w-full'}`}></span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+
+        {/* Mobile: Hamburger menu (visible on md-) */}
+        <div className="md:hidden max-w-full mx-auto">
+          <div className="flex items-center justify-between bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+            <div className="text-sm font-bold uppercase tracking-[0.15em] text-white">Menu</div>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-slate-400 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Dropdown Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-16 left-4 right-4 md:hidden z-40 bg-[#171717]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
+          >
+            <div className="flex flex-col p-4 gap-2">
+              {NAV_ITEMS.map((item) => (
+                <motion.button
+                  key={item.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 text-xs font-bold uppercase tracking-[0.1em] ${
+                    activeSection === item.id
+                      ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+                      : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
+                  }`}
+                >
+                  {item.name}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
