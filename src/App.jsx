@@ -77,8 +77,7 @@ const SKILLS_CATEGORIZED = {
   'Languages': ['Python', 'Java', 'JavaScript', 'SQL'],
   'Frameworks': ['React', 'Node.js', 'FastAPI'],
   'Databases': ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'],
-  'Tools': ['Git', 'Netlify', 'VS Code', 'Postman'],
-  'AI / ML': ['Gemini AI', 'Claude AI', 'Hugging Face', 'RAG Systems']
+  'Tools': ['Git', 'Netlify', 'VS Code', 'Postman']
 };
 
 // ==================== COMPONENTS ====================
@@ -224,9 +223,6 @@ const ProjectCard = ({ project, onOpen }) => {
       <div className="h-full p-6 sm:p-8 bg-[#1a1a1a] border border-white/5 rounded-3xl group-hover:border-cyan-500/30 transition-all duration-500 flex flex-col">
         <div className="flex items-start justify-between mb-4">
           <project.icon size={32} className="text-cyan-400" />
-          <span className="px-3 py-1 text-xs font-bold uppercase tracking-widest bg-green-500/10 text-green-400 border border-green-500/30 rounded-full">
-            Live
-          </span>
         </div>
         
         <h3 className="text-lg sm:text-xl font-bold text-white mb-3 uppercase tracking-tight">{project.title}</h3>
@@ -679,6 +675,9 @@ const App = () => {
 
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center text-center lg:text-left">
           <div className="lg:col-span-7 z-10">
+            <div className="text-cyan-400 font-bold text-xs sm:text-sm tracking-[0.25em] uppercase mb-2 font-mono">
+              HI, I AM
+            </div>
             <GlitchName />
             
             <div className="text-base sm:text-lg md:text-xl font-medium text-slate-300 mb-8 sm:mb-10 h-auto font-mono tracking-wide mt-6">
@@ -789,7 +788,7 @@ const App = () => {
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6">
             {Object.entries(SKILLS_CATEGORIZED).map(([category, skills]) => (
               <motion.div
                 key={category}
