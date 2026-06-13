@@ -485,17 +485,16 @@ const Navbar = ({ activeSection, isDark }) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false); // Close menu after navigation
+      setIsMobileMenuOpen(false);
     }
   };
 
   return (
     <>
-      {/* Desktop & Tablet Navbar */}
+      {/* Universal Navbar */}
       <nav className={`fixed top-0 w-full z-50 px-4 sm:px-6 md:px-8 py-4 transition-all duration-300 ${isScrolled ? 'bg-[#171717]/80 backdrop-blur-xl border-b border-white/10' : ''}`}>
-        {/* Desktop: Traditional horizontal nav (visible on md+) */}
-        <div className="hidden md:flex max-w-6xl mx-auto items-center justify-center">
-          <div className="flex items-center justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+        <div className="flex max-w-6xl mx-auto items-center justify-center">
+          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)] w-full sm:w-auto">
             <div className="flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em]">
               {NAV_ITEMS.map((item) => (
                 <button
@@ -510,52 +509,7 @@ const Navbar = ({ activeSection, isDark }) => {
             </div>
           </div>
         </div>
-
-        {/* Mobile: Hamburger menu (visible on md-) */}
-        <div className="md:hidden max-w-full mx-auto">
-          <div className="flex items-center justify-between bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
-            <div className="text-sm font-bold uppercase tracking-[0.15em] text-white">Menu</div>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-slate-400 hover:text-white transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
-        </div>
       </nav>
-
-      {/* Mobile Dropdown Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-16 left-4 right-4 md:hidden z-40 bg-[#171717]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
-          >
-            <div className="flex flex-col p-4 gap-2">
-              {NAV_ITEMS.map((item) => (
-                <motion.button
-                  key={item.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 text-xs font-bold uppercase tracking-[0.1em] ${
-                    activeSection === item.id
-                      ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
-                      : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
-                  }`}
-                >
-                  {item.name}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 };
@@ -699,7 +653,7 @@ const App = () => {
 
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center text-center lg:text-left">
           <div className="lg:col-span-8 z-10">
-            <div className="text-cyan-400 font-bold text-xs sm:text-sm tracking-[0.25em] uppercase mb-2 font-mono">
+            <div className="text-cyan-400 font-bold text-sm sm:text-base md:text-lg tracking-[0.25em] uppercase mb-2 font-mono">
               HI, I AM
             </div>
             <GlitchName />
