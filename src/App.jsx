@@ -66,11 +66,11 @@ const NAV_ITEMS = [
 ];
 
 const TERMINAL_COMMANDS = [
-  { command: 'python train_model.py', output: '✓ Model trained successfully\n✓ Accuracy: 94.7%' },
-  { command: 'git push origin main', output: '✓ Remote: github.com/harish200522\n✓ 5 commits pushed' },
-  { command: 'node server.js', output: '✓ Server running on http://localhost:3000\n✓ Connected to Database' },
-  { command: 'npm run build', output: '✓ Build complete\n✓ Bundle size: 245KB (gzipped)' },
-  { command: 'docker run ai-app', output: '✓ Container started\n✓ AI Pipeline Active' }
+  { command: 'npx cap sync android', output: '✓ Copying assets to Android project\n✓ Capacitor Android sync completed' },
+  { command: 'node catalogue-server.js', output: '✓ INOUT Catalogue running on port 5000\n✓ Connected to PostgreSQL (Neon DB)' },
+  { command: 'npm run build', output: '✓ vite v8.0.3 building client\n✓ dist/assets/index.js - 362 kB\n✓ Built successfully' },
+  { command: 'git push origin main', output: '✓ Remote: github.com/harish200522/POS-System\n✓ Pushed 3 commits to branch main' },
+  { command: 'python analyze_data.py', output: '✓ Connected to PostgreSQL database\n✓ Processed 1000+ entries\n✓ Analysis complete' }
 ];
 
 const SKILLS_CATEGORIZED = {
