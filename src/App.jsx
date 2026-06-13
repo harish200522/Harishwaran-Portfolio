@@ -26,7 +26,8 @@ import {
   Sun,
   Moon,
   Send,
-  Menu
+  Menu,
+  Linkedin
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
@@ -354,8 +355,6 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate form submission (replace with actual EmailJS integration)
     setTimeout(() => {
       setLoading(false);
       setSent(true);
@@ -370,9 +369,9 @@ const ContactForm = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       onSubmit={handleSubmit}
-      className="space-y-6 max-w-md mx-auto"
+      className="space-y-5 w-full"
     >
-      <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <input
           type="text"
           placeholder="Your Name"
@@ -381,8 +380,6 @@ const ContactForm = () => {
           required
           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-colors"
         />
-      </div>
-      <div>
         <input
           type="email"
           placeholder="Your Email"
@@ -392,17 +389,14 @@ const ContactForm = () => {
           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-colors"
         />
       </div>
-      <div>
-        <textarea
-          placeholder="Your Message"
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          required
-          rows="5"
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-colors resize-none"
-        />
-      </div>
-      
+      <textarea
+        placeholder="Your Message"
+        value={formData.message}
+        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+        required
+        rows="6"
+        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-colors resize-none"
+      />
       {sent && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -412,11 +406,10 @@ const ContactForm = () => {
           ✓ Message sent successfully!
         </motion.div>
       )}
-      
       <button
         type="submit"
         disabled={loading}
-        className="btn-primary mx-auto mt-4"
+        className="btn-primary mt-2"
       >
         <span>➤</span>
         {loading ? 'Sending...' : 'Send Message'}
@@ -931,69 +924,102 @@ const App = () => {
         </div>
       </section>
 
-      {/* ========== CONTACT SECTION ========== */}
+       {/* ========== CONTACT SECTION ========== */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#121212]">
         <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Get in Touch</h2>
-            <div className="w-12 h-1 bg-cyan-500 mx-auto mb-8"></div>
-            
-            <div className="flex flex-wrap gap-2 sm:gap-4 justify-center mb-12">
-              <button type="button" className="btn">
-                💼 Full-time Opportunities
-              </button>
-              <button type="button" className="btn">
-                🚀 Internships
-              </button>
-              <button type="button" className="btn">
-                💻 Freelance Projects
-              </button>
-            </div>
+            <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <ContactForm />
+          {/* Two-Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 flex justify-center gap-4 flex-wrap"
-          >
-            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="Btn" aria-label="GitHub Profile">
-              <span className="BG"></span>
-              <span className="svgContainer">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </span>
-            </a>
-            <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="LinkedinBtn" aria-label="LinkedIn Profile">
-              <span className="BG"></span>
-              <span className="svgContainer">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.824 0-9.737h3.554v1.379l-.022.033h.022v-.033c.43-.664 1.195-1.612 2.905-1.612 2.122 0 3.714 1.388 3.714 4.374v5.596zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.953.77-1.715 1.958-1.715 1.187 0 1.915.762 1.915 1.715 0 .953-.728 1.715-1.958 1.715zm1.691 11.597H3.635V9.57h3.393v10.882zM22.224 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.224 0z"/>
-              </svg>
-              </span>
-            </a>
-            <a href="https://www.instagram.com/harishwaran_22_/" target="_blank" rel="noreferrer" className="instagram-btn" aria-label="Instagram Profile">
-              <span className="BG"></span>
-              <span className="svgContainer">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
-                </svg>
-              </span>
-            </a>
-          </motion.div>
+            {/* Left — Info Panel */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black text-white mb-3">Let's build something <span className="text-cyan-400">great together.</span></h3>
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                  I'm currently open to full-time roles, internships, and freelance projects in AI, data science, and full-stack development. Drop me a message and I'll get back to you within 24 hours.
+                </p>
+              </div>
+
+              {/* Availability Badges */}
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                <span className="btn">💼 Full-time Opportunities</span>
+                <span className="btn">🚀 Internships</span>
+                <span className="btn">💻 Freelance Projects</span>
+              </div>
+
+              {/* Contact Info */}
+              <div className="space-y-4">
+                <a href="mailto:vsharishwaran@gmail.com" className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors group">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-cyan-500/40 transition-colors flex-shrink-0">
+                    <Mail size={18} className="text-cyan-400" />
+                  </div>
+                  <span className="text-sm font-medium">vsharishwaran@gmail.com</span>
+                </a>
+                <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors group">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-cyan-500/40 transition-colors flex-shrink-0">
+                    <Github size={18} className="text-slate-400 group-hover:text-cyan-400 transition-colors" />
+                  </div>
+                  <span className="text-sm font-medium">github.com/harish200522</span>
+                </a>
+                <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors group">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-cyan-500/40 transition-colors flex-shrink-0">
+                    <Linkedin size={18} className="text-slate-400 group-hover:text-cyan-400 transition-colors" />
+                  </div>
+                  <span className="text-sm font-medium">linkedin.com/in/harishwaran-v-s</span>
+                </a>
+              </div>
+
+              {/* Social Icon Row */}
+              <div className="flex gap-4 pt-2">
+                <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="Btn" aria-label="GitHub">
+                  <span className="BG"></span>
+                  <span className="svgContainer">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  </span>
+                </a>
+                <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="LinkedinBtn" aria-label="LinkedIn">
+                  <span className="BG"></span>
+                  <span className="svgContainer">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.824 0-9.737h3.554v1.379l-.022.033h.022v-.033c.43-.664 1.195-1.612 2.905-1.612 2.122 0 3.714 1.388 3.714 4.374v5.596zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.953.77-1.715 1.958-1.715 1.187 0 1.915.762 1.915 1.715 0 .953-.728 1.715-1.958 1.715zm1.691 11.597H3.635V9.57h3.393v10.882zM22.224 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.224 0z"/></svg>
+                  </span>
+                </a>
+                <a href="https://www.instagram.com/harishwaran_22_/" target="_blank" rel="noreferrer" className="instagram-btn" aria-label="Instagram">
+                  <span className="BG"></span>
+                  <span className="svgContainer">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                  </span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Right — Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 sm:p-8"
+            >
+              <ContactForm />
+            </motion.div>
+          </div>
         </div>
       </section>
+
 
       {/* ========== FOOTER ========== */}
       <footer className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 border-t border-white/5 bg-[#0f0f0f]">
