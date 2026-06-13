@@ -471,7 +471,7 @@ const ThemeToggle = ({ isDark, onChange }) => {
 // Navbar with sticky blur effect - Responsive for mobile
 const Navbar = ({ activeSection, isDark }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navContainerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -481,11 +481,32 @@ const Navbar = ({ activeSection, isDark }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!navContainerRef.current) return;
+    const activeBtn = navContainerRef.current.querySelector('[data-active="true"]');
+    if (activeBtn) {
+      const container = navContainerRef.current;
+      const scrollLeft = activeBtn.offsetLeft - (container.clientWidth / 2) + (activeBtn.clientWidth / 2);
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, [activeSection]);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+      const offset = 90; // approx height of navbar + padding
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -493,20 +514,33 @@ const Navbar = ({ activeSection, isDark }) => {
     <>
       {/* Universal Navbar */}
       <nav className={`fixed top-0 w-full z-50 px-4 sm:px-6 md:px-8 py-4 transition-all duration-300 ${isScrolled ? 'bg-[#171717]/80 backdrop-blur-xl border-b border-white/10' : ''}`}>
-        <div className="flex max-w-6xl mx-auto items-center justify-center">
-          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.45)] w-full sm:w-auto">
-            <div className="flex items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em]">
-              {NAV_ITEMS.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`relative transition-all duration-300 group uppercase whitespace-nowrap px-1 py-1 rounded-md ${activeSection === item.id ? 'text-white' : 'text-slate-400 hover:text-slate-100'}`}
-                >
-                  {item.name}
-                  <span className={`absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${activeSection === item.id ? 'w-full opacity-90' : 'w-0 opacity-60 group-hover:w-full'}`}></span>
-                </button>
-              ))}
+        <div className="flex max-w-6xl mx-auto items-center justify-center w-full">
+          <div className="relative flex items-center w-full sm:w-auto bg-[#171717]/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.45)] overflow-hidden">
+            {/* Left fade indicator */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#171717] to-transparent pointer-events-none z-10 sm:hidden" />
+            
+            {/* Scrollable Container */}
+            <div 
+              ref={navContainerRef}
+              className="overflow-x-auto no-scrollbar w-full sm:w-auto px-4 sm:px-6 lg:px-8 py-3 scroll-smooth"
+            >
+              <div className="flex flex-row flex-nowrap items-center gap-4 md:gap-6 lg:gap-8 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em]">
+                {NAV_ITEMS.map((item) => (
+                  <button
+                    key={item.name}
+                    data-active={activeSection === item.id ? "true" : "false"}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`relative transition-all duration-300 group uppercase whitespace-nowrap px-1 py-1 rounded-md shrink-0 ${activeSection === item.id ? 'text-white' : 'text-slate-400 hover:text-slate-100'}`}
+                  >
+                    {item.name}
+                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${activeSection === item.id ? 'w-full opacity-90' : 'w-0 opacity-60 group-hover:w-full'}`}></span>
+                  </button>
+                ))}
+              </div>
             </div>
+            
+            {/* Right fade indicator */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#171717] to-transparent pointer-events-none z-10 sm:hidden" />
           </div>
         </div>
       </nav>
@@ -593,30 +627,36 @@ const App = () => {
     }
   ];
 
-  // Scroll listeners
+  // Scroll listeners & Active Section Observer
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
       setShowBadge(window.scrollY < 150); // Hide badge after scrolling 150px
-      
-      const sections = NAV_ITEMS.map(item => document.getElementById(item.id)).filter(Boolean);
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(entry.target.id);
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-      
-      sections.forEach((section) => observer.observe(section));
-      return () => observer.disconnect();
     };
-
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Intersection Observer for Active Section
+    const sections = NAV_ITEMS.map(item => document.getElementById(item.id)).filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { 
+        threshold: 0.3, // trigger when 30% of the section is visible
+        rootMargin: "-20% 0px -60% 0px" // prioritize sections in the upper-middle of screen
+      }
+    );
+    
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToTop = () => {
