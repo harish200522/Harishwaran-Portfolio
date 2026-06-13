@@ -319,9 +319,7 @@ a.uiverse-btn-github,
   width: 14px;
   height: 14px;
   display: block;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
+  fill: currentColor;
 }
 
 a.uiverse-btn-github:hover,
