@@ -166,7 +166,7 @@ const GlitchName = () => {
       transition={{ duration: 0.8 }}
       className="relative"
     >
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[0.92] tracking-tighter uppercase">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white leading-[0.92] tracking-tighter uppercase">
         Harishwaran
         <motion.span
           animate={{ textShadow: ['0 0 0 rgba(0,188,212,0)', '0 0 10px rgba(0,188,212,0.5)', '0 0 0 rgba(0,188,212,0)'] }}
@@ -759,7 +759,7 @@ const App = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-4 w-full max-w-md lg:ml-auto">
+          <div className="lg:col-span-4 w-full max-w-sm lg:ml-auto">
             <AnimatedTerminal />
           </div>
         </div>
