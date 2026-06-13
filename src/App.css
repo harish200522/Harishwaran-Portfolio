@@ -1200,82 +1200,7 @@ a.uiverse-btn-github:hover,
   pointer-events: none;
 }
 
-.instagram-btn {
-  position: relative;
-  width: 130px;
-  height: 35px;
-  border-radius: 30px;
-  background-color: white;
-  border: 1px #FFB700 solid;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
 
-.instagram-btn .text1 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-left: 22%;
-  color: black;
-  transition: opacity 0.3s;
-}
-
-.instagram-btn .text2 {
-  position: absolute;
-  top: 25%;
-  left: -50px;
-  font-weight: 700;
-  font-size: 14px;
-  color: white;
-  transition: transform 0.6s;
-}
-
-.instagram-btn .icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 35px;
-  height: 33px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.5s;
-  color: black;
-}
-
-.instagram-btn .icon::before {
-  position: absolute;
-  left: -100px;
-  top: 0;
-  z-index: -1;
-  content: '';
-  width: 130px;
-  height: 33px;
-  border-radius: 30px;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-
-.instagram-btn:hover .icon {
-  transform: translateX(96px);
-  transition: transform 0.5s;
-  color: white;
-}
-
-.instagram-btn:hover .text2 {
-  transform: translateX(100px);
-  transition: transform 0.6s;
-}
-
-.instagram-btn:hover .text1 {
-  opacity: 0;
-}
-
-.instagram-btn:active {
-  transform: scale(1.03);
-}
 
 .LinkedinBtn {
   width: 45px;
@@ -1325,10 +1250,8 @@ a.uiverse-btn-github:hover,
 
 /* Ensure icon containers are above the BG even when ancestor gets a transform (framer-motion) */
 .Btn .svgContainer,
-.instagram-btn .icon,
 .LinkedinBtn .svgContainer,
 .Btn .svgContainer svg,
-.instagram-btn .icon svg,
 .LinkedinBtn .svgContainer svg {
   position: relative;
   z-index: 2;
