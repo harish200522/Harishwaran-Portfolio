@@ -75,9 +75,9 @@ const TERMINAL_COMMANDS = [
 
 const SKILLS_CATEGORIZED = {
   'Languages': ['Python', 'Java', 'JavaScript', 'SQL'],
-  'Frameworks': ['React', 'Node.js', 'FastAPI'],
+  'Frameworks': ['React', 'Node.js'],
   'Databases': ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'],
-  'Tools': ['Git', 'Netlify', 'VS Code', 'Postman']
+  'Tools': ['Git', 'Netlify', 'VS Code', 'Hostinger', 'Vercel']
 };
 
 // ==================== COMPONENTS ====================
