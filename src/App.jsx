@@ -26,8 +26,7 @@ import {
   Sun,
   Moon,
   Send,
-  Menu,
-  Linkedin
+  Menu
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
@@ -956,7 +955,7 @@ const App = () => {
               </div>
 
               {/* Availability Badges */}
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-col items-start gap-2.5 sm:gap-3">
                 <span className="btn">💼 Full-time Opportunities</span>
                 <span className="btn">🚀 Internships</span>
                 <span className="btn">💻 Freelance Projects</span>
@@ -978,7 +977,7 @@ const App = () => {
                 </a>
                 <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors group">
                   <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-cyan-500/40 transition-colors flex-shrink-0">
-                    <Linkedin size={18} className="text-slate-400 group-hover:text-cyan-400 transition-colors" />
+                    <FaLinkedinIn size={18} className="text-slate-400 group-hover:text-cyan-400 transition-colors" />
                   </div>
                   <span className="text-sm font-medium">linkedin.com/in/harishwaran-v-s</span>
                 </a>
