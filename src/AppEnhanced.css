@@ -120,6 +120,18 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
+  .Btn .BG,
+  .instagram-btn .BG,
+  .LinkedinBtn .BG {
+    z-index: 0;
+  }
+
+  .Btn .svgContainer,
+  .instagram-btn .svgContainer,
+  .LinkedinBtn .svgContainer {
+    position: relative;
+    z-index: 2;
+  }
   }
   100% {
     background-position: 1000px 0;
