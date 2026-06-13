@@ -287,7 +287,7 @@ const ProjectCard = ({ project, onOpen }) => {
         <div className="flex gap-2">
           <button
             onClick={() => onOpen(project)}
-            className="Documents-btn flex-1"
+            className="Documents-btn"
           >
             See Sample
           </button>
@@ -295,7 +295,7 @@ const ProjectCard = ({ project, onOpen }) => {
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn-github flex-1"
+            className="uiverse-btn-github"
           >
             <span className="BG"></span>
             <span className="svgContainer"><Github size={14} /></span>
