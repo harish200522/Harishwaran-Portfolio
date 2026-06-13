@@ -377,7 +377,7 @@ const ContactForm = () => {
     setSent(false);
 
     // Replace this string with your actual Web3Forms Access Key from https://web3forms.com/
-    const accessKey = "YOUR_WEB3FORMS_ACCESS_KEY";
+    const accessKey = "39f329af-0826-4fca-9ceb-03a898e93fc7";
 
     if (accessKey === "YOUR_WEB3FORMS_ACCESS_KEY") {
       // Mock submit simulation if key is not configured yet (degrades gracefully)
