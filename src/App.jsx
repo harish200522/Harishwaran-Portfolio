@@ -77,7 +77,8 @@ const SKILLS_CATEGORIZED = {
   'Languages': ['Python', 'Java', 'JavaScript', 'SQL'],
   'Frameworks': ['React', 'Node.js', 'FastAPI'],
   'Databases': ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'],
-  'Tools': ['Git', 'Netlify']
+  'Tools': ['Git', 'Netlify', 'VS Code', 'Postman'],
+  'AI / ML': ['Gemini AI', 'Claude AI', 'Hugging Face', 'RAG Systems']
 };
 
 // ==================== COMPONENTS ====================
@@ -677,11 +678,11 @@ const App = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="fixed top-20 right-3 sm:right-4 md:right-6 z-40 px-2 sm:px-3 py-1.5 bg-green-500/20 border border-green-500/50 rounded-full text-green-400 text-[10px] sm:text-xs font-bold uppercase tracking-wide flex items-center gap-1.5"
+              className="fixed top-20 right-2 sm:right-4 md:right-6 z-40 px-1.5 py-1 sm:px-3 sm:py-1.5 bg-green-500/20 border border-green-500/50 rounded-full text-green-400 text-[8px] sm:text-xs font-bold uppercase tracking-wide flex items-center gap-1 sm:gap-1.5"
             >
-              <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-green-400 rounded-full animate-pulse"></span>
               <span className="hidden sm:inline">Open to Work</span>
-              <span className="sm:hidden">Hiring</span>
+              <span className="sm:hidden">Open to Work</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -798,7 +799,7 @@ const App = () => {
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-6">
             {Object.entries(SKILLS_CATEGORIZED).map(([category, skills]) => (
               <motion.div
                 key={category}
