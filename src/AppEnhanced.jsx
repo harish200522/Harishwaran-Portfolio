@@ -287,7 +287,7 @@ const ProjectCard = ({ project, onOpen }) => {
         <div className="flex gap-2">
           <button
             onClick={() => onOpen(project)}
-            className="button flex-1"
+            className="Documents-btn flex-1"
           >
             See Sample
           </button>
@@ -295,7 +295,7 @@ const ProjectCard = ({ project, onOpen }) => {
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="Btn flex-1"
+            className="btn-github flex-1"
           >
             <span className="BG"></span>
             <span className="svgContainer"><Github size={14} /></span>
@@ -675,9 +675,16 @@ const App = () => {
                 href={gmailComposeHref}
                 target="_blank"
                 rel="noreferrer"
-                className="px-6 sm:px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-bold uppercase text-sm rounded-lg transition-all"
+                className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group"
               >
-                Get in Touch
+                <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4">
+                  <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
+                </span>
+                <span className="absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-ml-4 group-hover:-mb-4">
+                  <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
+                </span>
+                <span className="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full bg-indigo-600 rounded-md group-hover:translate-x-0"></span>
+                <span className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">Get in Touch</span>
               </a>
               <a
                 href="#projects"
@@ -737,7 +744,7 @@ const App = () => {
               <a
                 href="/resume.pdf"
                 download="Harishwaran_VS_Resume.pdf"
-                className="Download-button"
+                className="brutalist-button"
               >
                 Download Resume
               </a>
@@ -925,11 +932,9 @@ const App = () => {
             viewport={{ once: true }}
             className="mt-16 flex justify-center gap-4 flex-wrap"
           >
-            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="github-btn group relative inline-flex items-center justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r from-gray-800 to-black text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]">
-              <FaGithub size={24} />
-              <span className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
-                GitHub
-              </span>
+            <a href="https://github.com/harish200522" target="_blank" rel="noreferrer" className="Btn" aria-label="GitHub Profile">
+              <span className="BG"></span>
+              <span className="svgContainer"><FaGithub size={24} /></span>
             </a>
             <a href="https://www.linkedin.com/in/harishwaran-v-s-966964378/" target="_blank" rel="noreferrer" className="LinkedinBtn">
               <span className="BG"></span>
