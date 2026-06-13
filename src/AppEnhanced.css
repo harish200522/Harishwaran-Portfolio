@@ -745,6 +745,21 @@ h1, h2, h3, h4, h5, h6 {
 .LinkedinBtn:hover .svgContainer {
   background-color: rgba(156, 156, 156, 0.466);
 }
+
+/* Disable hover effects for social buttons in Enhanced stylesheet */
+.Btn:hover,
+.Btn:hover .svgContainer,
+.LinkedinBtn:hover,
+.instagram-btn:hover {
+  transform: none !important;
+}
+
+.Btn:hover .svgContainer::before,
+.Btn:hover .svgContainer::after,
+.LinkedinBtn:hover::before,
+.instagram-btn:hover::before {
+  opacity: 0 !important;
+}
 /* ==================== EXPERIENCE SECTION ==================== */
 
 .experience-card {

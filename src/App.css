@@ -449,6 +449,25 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
+/* Disable hover effects for social buttons: keep original static appearance */
+.btn-social:hover {
+  transform: none !important;
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2) !important;
+}
+
+.btn-social:hover::before,
+.btn-social:hover::after {
+  opacity: 0 !important;
+}
+
+.btn-social.github:hover,
+.btn-social.linkedin:hover,
+.btn-social.instagram:hover {
+  border-color: #00bcd4 !important;
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2) !important;
+  color: inherit !important;
+}
+
 /* STAT CARD - CGPA */
 .stat-card {
   position: relative;
