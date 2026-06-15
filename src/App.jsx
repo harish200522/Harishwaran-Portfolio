@@ -310,9 +310,27 @@ const CertificateModal = ({ cert, isOpen, onClose }) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className={`bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden ${cert.pdfUrl ? 'w-full max-w-4xl' : 'p-8 max-w-md w-full'}`}
+          className={`bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden ${(cert.pdfUrl || cert.imageUrl) ? 'w-full max-w-3xl' : 'p-8 max-w-md w-full'}`}
         >
-          {cert.pdfUrl ? (
+          {cert.imageUrl ? (
+            // Image viewer mode — clean lightbox
+            <>
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                <h3 className="text-xl font-bold text-white uppercase tracking-tight flex-1">{cert.title}</h3>
+                <button onClick={onClose} className="text-slate-400 hover:text-white ml-4">
+                  <X size={24} />
+                </button>
+              </div>
+              <div className="w-full bg-[#0a0a0a] flex items-center justify-center p-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+                <img
+                  src={cert.imageUrl}
+                  alt={cert.title}
+                  className="w-full h-auto rounded-xl object-contain"
+                  style={{ maxHeight: '75vh' }}
+                />
+              </div>
+            </>
+          ) : cert.pdfUrl ? (
             // PDF Viewer mode — clean embed like Google Drive
             <>
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
@@ -693,7 +711,7 @@ const App = () => {
       score: "✓",
       scorePercent: 100,
       description: "Meta certified React frontend development course",
-      pdfUrl: "/frontend_developer_react_certificate.pdf",
+      imageUrl: "/frontend_developer_react_certificate.png",
       badge: "HackerRank"
     },
     {
@@ -701,7 +719,7 @@ const App = () => {
       score: "✓",
       scorePercent: 100,
       description: "Java programming fundamentals and core concepts",
-      pdfUrl: "/java_basic_certificate.pdf",
+      imageUrl: "/java_basic_certificate.png",
       badge: "HackerRank"
     },
     {
@@ -1020,9 +1038,9 @@ const App = () => {
               >
                 <div className="flex items-start justify-between mb-3">
                   <Award className="text-orange-400 flex-shrink-0" size={28} />
-                  {cert.pdfUrl ? (
+                  {(cert.pdfUrl || cert.imageUrl) ? (
                     <span className="px-2 py-1 bg-orange-500/20 border border-orange-500/30 rounded-lg text-orange-400 text-[10px] font-bold uppercase tracking-wider">
-                      {cert.badge || 'View PDF'}
+                      {cert.badge || 'View'}
                     </span>
                   ) : (
                     <span className="text-orange-400 font-black text-xl">{cert.score}</span>
