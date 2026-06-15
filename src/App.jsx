@@ -310,53 +310,76 @@ const CertificateModal = ({ cert, isOpen, onClose }) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-[#1a1a1a] border border-white/10 rounded-3xl p-8 max-w-md w-full"
+          className={`bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden ${cert.pdfUrl ? 'w-full max-w-4xl' : 'p-8 max-w-md w-full'}`}
         >
-          <div className="flex items-start justify-between mb-6">
-            <h3 className="text-2xl font-bold text-white uppercase tracking-tight flex-1">{cert.title}</h3>
-            <button onClick={onClose} className="text-slate-400 hover:text-white">
-              <X size={24} />
-            </button>
-          </div>
-          
-          <div className="space-y-6">
-            <div>
-              <p className="text-slate-400 text-sm mb-2">Score</p>
-              <div className="flex items-center gap-4">
-                <div className="relative w-32 h-32">
-                  <svg className="transform -rotate-90 w-32 h-32">
-                    <circle cx="64" cy="64" r="56" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
-                    <motion.circle
-                      cx="64"
-                      cy="64"
-                      r="56"
-                      fill="none"
-                      stroke="#00bcd4"
-                      strokeWidth="8"
-                      strokeDasharray="351.86"
-                      initial={{ strokeDashoffset: 351.86 }}
-                      animate={{ strokeDashoffset: 351.86 * (1 - cert.scorePercent / 100) }}
-                      transition={{ duration: 1.5 }}
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-3xl font-black text-cyan-400">{cert.score}</span>
+          {cert.pdfUrl ? (
+            // PDF Viewer mode — clean embed like Google Drive
+            <>
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                <h3 className="text-xl font-bold text-white uppercase tracking-tight flex-1">{cert.title}</h3>
+                <button onClick={onClose} className="text-slate-400 hover:text-white ml-4">
+                  <X size={24} />
+                </button>
+              </div>
+              <div className="w-full bg-[#111]" style={{ height: '80vh' }}>
+                <iframe
+                  src={`${cert.pdfUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  title={cert.title}
+                  className="w-full h-full"
+                  style={{ border: 'none' }}
+                />
+              </div>
+            </>
+          ) : (
+            // Score circle mode (existing certificates)
+            <div className="p-8">
+              <div className="flex items-start justify-between mb-6">
+                <h3 className="text-2xl font-bold text-white uppercase tracking-tight flex-1">{cert.title}</h3>
+                <button onClick={onClose} className="text-slate-400 hover:text-white">
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <p className="text-slate-400 text-sm mb-2">Score</p>
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-32 h-32">
+                      <svg className="transform -rotate-90 w-32 h-32">
+                        <circle cx="64" cy="64" r="56" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
+                        <motion.circle
+                          cx="64"
+                          cy="64"
+                          r="56"
+                          fill="none"
+                          stroke="#00bcd4"
+                          strokeWidth="8"
+                          strokeDasharray="351.86"
+                          initial={{ strokeDashoffset: 351.86 }}
+                          animate={{ strokeDashoffset: 351.86 * (1 - cert.scorePercent / 100) }}
+                          transition={{ duration: 1.5 }}
+                        />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-3xl font-black text-cyan-400">{cert.score}</span>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-slate-300 font-bold mb-2">Performance</p>
+                      <p className="text-slate-500 text-sm">{cert.description}</p>
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <p className="text-slate-300 font-bold mb-2">Performance</p>
-                  <p className="text-slate-500 text-sm">{cert.description}</p>
-                </div>
+                
+                <button
+                  onClick={onClose}
+                  className="w-full px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-bold uppercase rounded-lg transition-colors"
+                >
+                  Close
+                </button>
               </div>
             </div>
-            
-            <button
-              onClick={onClose}
-              className="w-full px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-bold uppercase rounded-lg transition-colors"
-            >
-              Close
-            </button>
-          </div>
+          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>
@@ -666,6 +689,22 @@ const App = () => {
 
   const certificates = [
     {
+      title: "Frontend Developer (React)",
+      score: "✓",
+      scorePercent: 100,
+      description: "Meta certified React frontend development course",
+      pdfUrl: "/frontend_developer_react_certificate.pdf",
+      badge: "HackerRank"
+    },
+    {
+      title: "Java Basic",
+      score: "✓",
+      scorePercent: 100,
+      description: "Java programming fundamentals and core concepts",
+      pdfUrl: "/java_basic_certificate.pdf",
+      badge: "HackerRank"
+    },
+    {
       title: "Industry 4.0 & IIoT",
       score: "71%",
       scorePercent: 71,
@@ -965,25 +1004,35 @@ const App = () => {
             <div className="w-12 h-1 bg-cyan-500 mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {certificates.map((cert, i) => (
               <motion.button
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
                 onClick={() => {
                   setSelectedCert(cert);
                   setIsCertModalOpen(true);
                 }}
-                className="p-6 bg-gradient-to-br from-orange-500/10 to-orange-500/5 border border-orange-500/20 rounded-2xl hover:border-orange-500/40 transition-all text-left group"
+                className="p-6 bg-gradient-to-br from-orange-500/10 to-orange-500/5 border border-orange-500/20 rounded-2xl hover:border-orange-500/40 hover:scale-[1.02] transition-all text-left group relative overflow-hidden"
               >
                 <div className="flex items-start justify-between mb-3">
                   <Award className="text-orange-400 flex-shrink-0" size={28} />
-                  <span className="text-orange-400 font-black text-xl">{cert.score}</span>
+                  {cert.pdfUrl ? (
+                    <span className="px-2 py-1 bg-orange-500/20 border border-orange-500/30 rounded-lg text-orange-400 text-[10px] font-bold uppercase tracking-wider">
+                      {cert.badge || 'View PDF'}
+                    </span>
+                  ) : (
+                    <span className="text-orange-400 font-black text-xl">{cert.score}</span>
+                  )}
                 </div>
-                <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors">{cert.title}</h3>
-                <p className="text-sm text-slate-400 mt-2">Click to view details</p>
+                <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors mb-1">{cert.title}</h3>
+                <p className="text-xs text-slate-500 mt-2 flex items-center gap-1">
+                  <Eye size={12} />
+                  Click to view certificate
+                </p>
               </motion.button>
             ))}
           </div>
