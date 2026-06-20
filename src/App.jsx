@@ -646,6 +646,7 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('profile');
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeSampleIndex, setActiveSampleIndex] = useState(0);
+  const touchStartX = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [selectedCert, setSelectedCert] = useState(null);
@@ -1218,40 +1219,91 @@ const App = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#1a1a1a] border border-white/10 rounded-3xl max-w-3xl w-full overflow-hidden"
+              className="bg-[#1a1a1a] border border-white/10 rounded-2xl sm:rounded-3xl w-full max-w-3xl overflow-hidden"
+              style={{ maxHeight: '92vh' }}
             >
-              <div className="relative">
+              {/* Image area with swipe support */}
+              <div
+                className="relative w-full overflow-hidden bg-black"
+                onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+                onTouchEnd={(e) => {
+                  if (touchStartX.current === null) return;
+                  const diff = touchStartX.current - e.changedTouches[0].clientX;
+                  if (Math.abs(diff) > 40) {
+                    if (diff > 0) {
+                      setActiveSampleIndex(i => (i + 1) % selectedProject.sampleImages.length);
+                    } else {
+                      setActiveSampleIndex(i => (i - 1 + selectedProject.sampleImages.length) % selectedProject.sampleImages.length);
+                    }
+                  }
+                  touchStartX.current = null;
+                }}
+              >
                 <img
                   src={selectedProject.sampleImages[activeSampleIndex]}
                   alt="Sample"
-                  className="w-full h-[400px] object-cover"
+                  className="w-full object-contain"
+                  style={{ maxHeight: '65vh' }}
                 />
+
+                {/* Close button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70"
+                  className="absolute top-3 right-3 p-2 bg-black/60 rounded-full text-white hover:bg-black/80 transition-colors"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-4">{selectedProject.title}</h3>
-                <div className="flex gap-2 justify-center">
-                  {selectedProject.sampleImages.map((_, idx) => (
+
+                {/* Prev / Next arrows (shown when >1 image) */}
+                {selectedProject.sampleImages.length > 1 && (
+                  <>
                     <button
-                      key={idx}
-                      onClick={() => setActiveSampleIndex(idx)}
-                      className={`h-2 rounded-full transition-all ${idx === activeSampleIndex ? 'w-8 bg-cyan-400' : 'w-2 bg-slate-600'}`}
-                    />
-                  ))}
-                </div>
+                      onClick={() => setActiveSampleIndex(i => (i - 1 + selectedProject.sampleImages.length) % selectedProject.sampleImages.length)}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 hover:bg-black/80 rounded-full text-white transition-colors"
+                    >
+                      <ChevronLeft size={22} />
+                    </button>
+                    <button
+                      onClick={() => setActiveSampleIndex(i => (i + 1) % selectedProject.sampleImages.length)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/60 hover:bg-black/80 rounded-full text-white transition-colors"
+                    >
+                      <ChevronRight size={22} />
+                    </button>
+                  </>
+                )}
+
+                {/* Image counter badge */}
+                {selectedProject.sampleImages.length > 1 && (
+                  <span className="absolute bottom-3 right-3 text-[11px] font-bold bg-black/60 text-white px-2 py-1 rounded-full">
+                    {activeSampleIndex + 1} / {selectedProject.sampleImages.length}
+                  </span>
+                )}
+              </div>
+
+              {/* Bottom info */}
+              <div className="px-5 py-4">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{selectedProject.title}</h3>
+                {selectedProject.sampleImages.length > 1 && (
+                  <div className="flex gap-2 justify-center">
+                    {selectedProject.sampleImages.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveSampleIndex(idx)}
+                        className={`h-2 rounded-full transition-all duration-300 ${idx === activeSampleIndex ? 'w-8 bg-cyan-400' : 'w-2 bg-slate-600 hover:bg-slate-400'}`}
+                      />
+                    ))}
+                  </div>
+                )}
+                {selectedProject.sampleImages.length > 1 && (
+                  <p className="text-center text-slate-500 text-xs mt-2">← Swipe to browse →</p>
+                )}
               </div>
             </motion.div>
           </motion.div>
