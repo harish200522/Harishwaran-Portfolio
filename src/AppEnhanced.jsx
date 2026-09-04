@@ -295,11 +295,10 @@ const ProjectCard = ({ project, onOpen }) => {
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="uiverse-btn-github"
+            className="btn-github"
           >
-            <span className="BG"></span>
-            <span className="svgContainer"><Github size={14} /></span>
-            <span className="text-xs uppercase font-bold">View on GitHub</span>
+            <Github size={16} />
+            <span>View on GitHub</span>
           </a>
         </div>
       </div>

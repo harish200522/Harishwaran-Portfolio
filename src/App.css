@@ -254,76 +254,36 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 5px 15px rgba(0, 188, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.btn-github {
+/* From Uiverse.io by Creatlydev */
+.btn-github,
+a.btn-github,
+.uiverse-btn-github,
+a.uiverse-btn-github {
   cursor: pointer;
   display: flex;
-  gap: 0.5rem;
-  border: none;
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  border-radius: 100px;
-  font-weight: 800;
-  place-content: center;
-  padding: 0.75rem 1rem;
-  font-size: 0.825rem;
-  line-height: 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-  color: #fff;
-  text-decoration: none;
-}
-
-.btn-github:hover {
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
-    inset 0 0 0 1px rgba(252, 232, 3, 0.08);
-  color: #fce803;
-  transform: translate(0, -0.25rem);
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Scoped Uiverse GitHub button to avoid global conflicts */
-a.uiverse-btn-github,
-.uiverse-btn-github {
-  cursor: pointer;
-  display: flex;
-  gap: 0.5rem;
-  border: none;
   align-items: center;
-
+  gap: 0.5rem;
+  border: none;
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   border-radius: 100px;
   font-weight: 800;
   place-content: center;
-
   padding: 0.75rem 1rem;
   font-size: 0.825rem;
   line-height: 1rem;
-
   background-color: rgba(0, 0, 0, 0.4);
   box-shadow:
     inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
     inset 0 0 0 1px rgba(255, 255, 255, 0.04);
   color: #fff !important;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.uiverse-btn-github .svgContainer {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.uiverse-btn-github .svgContainer svg {
-  width: 14px;
-  height: 14px;
-  display: block;
-  fill: currentColor;
-}
-
-a.uiverse-btn-github:hover,
-.uiverse-btn-github:hover {
+.btn-github:hover,
+a.btn-github:hover,
+.uiverse-btn-github:hover,
+a.uiverse-btn-github:hover {
   box-shadow:
     inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
     inset 0 0 0 1px rgba(252, 232, 3, 0.08);

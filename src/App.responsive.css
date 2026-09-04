@@ -73,21 +73,17 @@ section {
   }
 }
 
+.btn-github,
 .uiverse-btn-github {
   padding: 0.65rem 0.9rem;
   font-size: 0.75rem;
-  flex: 1;
 }
 
 @media (max-width: 640px) {
+  .btn-github,
   .uiverse-btn-github {
-    padding: 0.6rem 0.8rem;
+    padding: 0.55rem 0.75rem;
     font-size: 0.7rem;
-  }
-  
-  .uiverse-btn-github .svgContainer svg {
-    width: 12px;
-    height: 12px;
   }
 }
 
