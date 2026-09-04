@@ -258,11 +258,21 @@ const ProjectCard = ({ project, onOpen }) => {
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10"></div>
       
       <div className="h-full p-6 sm:p-8 bg-[#1a1a1a] border border-white/5 rounded-3xl group-hover:border-cyan-500/30 transition-all duration-500 flex flex-col">
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center justify-between mb-4">
           <project.icon size={32} className="text-cyan-400" />
-          <span className="px-3 py-1 text-xs font-bold uppercase tracking-widest bg-green-500/10 text-green-400 border border-green-500/30 rounded-full">
-            Live
-          </span>
+          {project.isUnderDevelopment ? (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/10 border border-amber-500/40 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.25)]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+              </span>
+              Under Development
+            </span>
+          ) : (
+            <span className="px-3 py-1 text-xs font-bold uppercase tracking-widest bg-green-500/10 text-green-400 border border-green-500/30 rounded-full">
+              Live
+            </span>
+          )}
         </div>
         
         <h3 className="text-lg sm:text-xl font-bold text-white mb-3 uppercase tracking-tight">{project.title}</h3>
@@ -612,9 +622,10 @@ const App = () => {
       desc: "Full-stack e-commerce platform for real client",
       tech: ["React", "Node.js", "PostgreSQL", "Cloudinary"],
       icon: LayoutGrid,
-      impact: "Deployed to production for real client operations",
+      impact: "🚧 Under Active Development — Live Demo Preview Available",
       githubUrl: "https://github.com/harish200522/catalogue",
       liveUrl: "https://vocal-buttercream-06059c.netlify.app",
+      isUnderDevelopment: true,
       sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
     },
     {
