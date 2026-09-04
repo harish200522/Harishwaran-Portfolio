@@ -516,7 +516,7 @@ const ThemeToggle = ({ isDark, onChange }) => {
 };
 
 // Navbar with sticky blur effect
-const Navbar = ({ activeSection, isDark }) => {
+const Navbar = ({ activeSection, setActiveSection, isDark }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -528,9 +528,21 @@ const Navbar = ({ activeSection, isDark }) => {
   }, []);
 
   const scrollToSection = (id) => {
+    if (setActiveSection) {
+      setActiveSection(id);
+    }
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 90;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -634,7 +646,7 @@ const App = () => {
       tech: ["HTML", "CSS"],
       icon: Globe,
       impact: "Responsive online presence for local medical business",
-      githubUrl: "https://github.com/harish200522/Harishwaran-Portfolio",
+      githubUrl: "https://github.com/harish200522/Medical-Landing",
       liveUrl: "https://harishwaranmedical.vercel.app",
       sampleImages: sampleImagesByFolder['image7']?.length ? sampleImagesByFolder['image7'] : [heroImage]
     }
@@ -659,24 +671,24 @@ const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
-      
-      const sections = NAV_ITEMS.map(item => document.getElementById(item.id)).filter(Boolean);
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(entry.target.id);
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-      
-      sections.forEach((section) => observer.observe(section));
-      return () => observer.disconnect();
+
+      const scrollPosition = window.scrollY + 180;
+      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+        const item = NAV_ITEMS[i];
+        const element = document.getElementById(item.id);
+        if (element) {
+          const top = element.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(item.id);
+            break;
+          }
+        }
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -686,7 +698,7 @@ const App = () => {
 
   return (
     <div className={`min-h-screen text-[#d1d5db] overflow-x-hidden font-sans transition-colors duration-300 ${isDark ? 'bg-[#121212]' : 'bg-slate-100'}`}>
-      <Navbar activeSection={activeSection} isDark={isDark} />
+      <Navbar activeSection={activeSection} setActiveSection={setActiveSection} isDark={isDark} />
       <ThemeToggle isDark={isDark} onChange={setIsDark} />
       <BackToTopButton isVisible={showBackToTop} onClick={scrollToTop} />
 

@@ -584,7 +584,7 @@ const ThemeToggle = ({ isDark, onChange }) => {
 };
 
 // Navbar with sticky blur effect - Responsive for mobile
-const Navbar = ({ activeSection, isDark }) => {
+const Navbar = ({ activeSection, setActiveSection, isDark }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navContainerRef = useRef(null);
 
@@ -610,6 +610,9 @@ const Navbar = ({ activeSection, isDark }) => {
   }, [activeSection]);
 
   const scrollToSection = (id) => {
+    if (setActiveSection) {
+      setActiveSection(id);
+    }
     const element = document.getElementById(id);
     if (element) {
       const offset = 90; // approx height of navbar + padding
@@ -745,7 +748,7 @@ const App = () => {
       tech: ["HTML", "CSS"],
       icon: Globe,
       impact: "Responsive online presence for local medical business",
-      githubUrl: "https://github.com/harish200522/Harishwaran-Portfolio",
+      githubUrl: "https://github.com/harish200522/Medical-Landing",
       liveUrl: "https://harishwaranmedical.vercel.app",
       sampleImages: sampleImagesByFolder['image7']?.length ? sampleImagesByFolder['image7'] : [heroImage]
     }
@@ -787,30 +790,27 @@ const App = () => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
       setShowBadge(window.scrollY < 150); // Hide badge after scrolling 150px
-    };
-    window.addEventListener('scroll', handleScroll);
 
-    // Intersection Observer for Active Section
-    const sections = NAV_ITEMS.map(item => document.getElementById(item.id)).filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+      // Determine active section based on scroll position
+      const scrollPosition = window.scrollY + 180;
+      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+        const item = NAV_ITEMS[i];
+        const element = document.getElementById(item.id);
+        if (element) {
+          const top = element.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(item.id);
+            break;
           }
-        });
-      },
-      { 
-        threshold: 0.3, // trigger when 30% of the section is visible
-        rootMargin: "-20% 0px -60% 0px" // prioritize sections in the upper-middle of screen
+        }
       }
-    );
-    
-    sections.forEach((section) => observer.observe(section));
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
     };
   }, []);
 
@@ -820,7 +820,7 @@ const App = () => {
 
   return (
     <div className={`min-h-screen text-[#d1d5db] overflow-x-hidden font-sans transition-colors duration-300 ${isDark ? 'bg-[#121212]' : 'bg-slate-100'}`}>
-      <Navbar activeSection={activeSection} isDark={isDark} />
+      <Navbar activeSection={activeSection} setActiveSection={setActiveSection} isDark={isDark} />
       <ThemeToggle isDark={isDark} onChange={setIsDark} />
       <BackToTopButton isVisible={showBackToTop} onClick={scrollToTop} />
 
