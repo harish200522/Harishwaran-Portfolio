@@ -718,6 +718,25 @@ const App = () => {
       githubUrl: "https://github.com/harish200522/catalogue",
       liveUrl: "https://inoutcatalogue.netlify.app",
       sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
+    },
+    {
+      title: "INOUT Fashion",
+      desc: "Full-stack e-commerce platform for real client",
+      tech: ["React", "Node.js", "PostgreSQL", "Cloudinary"],
+      icon: LayoutGrid,
+      impact: "Deployed to production for real client operations",
+      githubUrl: "https://github.com/harish200522/catalogue",
+      liveUrl: "https://inoutcatalogue.netlify.app",
+      sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
+    },
+    {
+      title: "Medical's Landing Page",
+      desc: "Landing page for a real business",
+      tech: ["HTML", "CSS"],
+      icon: Globe,
+      impact: "Responsive online presence for local medical business",
+      githubUrl: "https://github.com/harish200522/Harishwaran-Portfolio",
+      sampleImages: [heroImage]
     }
   ];
 
