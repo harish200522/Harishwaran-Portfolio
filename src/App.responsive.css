@@ -63,26 +63,35 @@ section {
   font-size: 13px;
 }
 
+/* Parent button row — prevent overflow on mobile */
 @media (max-width: 640px) {
+  .flex.items-center.gap-2.w-full {
+    gap: 6px;
+    overflow: hidden;
+  }
+
   .Documents-btn {
     height: 36px;
-    padding: 0px 6px;
+    padding: 0px 5px;
     gap: 4px;
-    flex: 1;
-    max-width: 48%;
+    flex: 1 1 0;
+    max-width: calc(50% - 3px);
     min-width: 0;
     justify-content: center;
     white-space: nowrap;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   .Documents-btn .text {
-    font-size: 10.5px;
+    font-size: 10px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .Documents-btn .folderContainer {
-    width: 22px;
+    width: 20px;
     flex-shrink: 0;
   }
 
@@ -91,24 +100,58 @@ section {
   .uiverse-btn-github,
   a.uiverse-btn-github {
     height: 36px;
-    padding: 0px 6px;
-    gap: 0.3em;
-    font-size: 0.68rem;
-    letter-spacing: -0.01em;
-    flex: 1;
-    max-width: 48%;
+    padding: 0px 8px;
+    gap: 0.25em;
+    font-size: 0.65rem;
+    letter-spacing: -0.02em;
+    flex: 1 1 0;
+    max-width: calc(50% - 3px);
     min-width: 0;
     justify-content: center;
     white-space: nowrap;
     box-sizing: border-box;
     border-radius: 50px;
+    overflow: hidden;
   }
 
   .btn-github svg,
   .uiverse-btn-github svg {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
     flex-shrink: 0;
+  }
+}
+
+/* Extra-small screens (very narrow phones) */
+@media (max-width: 380px) {
+  .Documents-btn {
+    height: 34px;
+    padding: 0px 4px;
+    gap: 3px;
+  }
+
+  .Documents-btn .text {
+    font-size: 9px;
+  }
+
+  .Documents-btn .folderContainer {
+    width: 18px;
+  }
+
+  .btn-github,
+  a.btn-github,
+  .uiverse-btn-github,
+  a.uiverse-btn-github {
+    height: 34px;
+    padding: 0px 6px;
+    gap: 0.2em;
+    font-size: 0.6rem;
+  }
+
+  .btn-github svg,
+  .uiverse-btn-github svg {
+    width: 11px;
+    height: 11px;
   }
 }
 
