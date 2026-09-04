@@ -66,24 +66,35 @@ section {
 @media (max-width: 640px) {
   .Documents-btn {
     height: 40px;
-    padding: 0px 10px;
-    font-size: 11px;
+    padding: 0px 8px;
     flex: 1;
+    min-width: 0;
+    justify-content: center;
     white-space: nowrap;
   }
-}
 
-.btn-github,
-.uiverse-btn-github {
-  padding: 0.65rem 0.9rem;
-  font-size: 0.75rem;
-}
+  .Documents-btn .text {
+    font-size: 11px;
+    white-space: nowrap;
+  }
 
-@media (max-width: 640px) {
+  .Documents-btn .folderContainer {
+    width: 26px;
+    flex-shrink: 0;
+  }
+
   .btn-github,
-  .uiverse-btn-github {
-    padding: 0.55rem 0.75rem;
-    font-size: 0.7rem;
+  a.btn-github,
+  .uiverse-btn-github,
+  a.uiverse-btn-github {
+    height: 40px;
+    padding: 0px 8px;
+    font-size: 0.72rem;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    white-space: nowrap;
+    box-sizing: border-box;
   }
 }
 

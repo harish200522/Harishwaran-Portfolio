@@ -391,7 +391,7 @@ const ProjectCard = ({ project, onOpen }) => {
           )}
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2 w-full mt-auto pt-2">
           <button
             onClick={() => onOpen(project)}
             className="Documents-btn"
