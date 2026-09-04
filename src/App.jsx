@@ -244,17 +244,19 @@ const ProjectCard = ({ project, onOpen }) => {
               <span className="px-2 py-1 text-[8px] font-bold uppercase text-cyan-400">+{project.tech.length - 3} more</span>
             )}
           </div>
-          <a
-            href={project.liveUrl || project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="open-browser-btn"
-          >
-            <span>Open in Browser</span>
-            <div className="iconButton">
-              <Globe size={13} />
-            </div>
-          </a>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="open-browser-btn"
+            >
+              <span>Open in Browser</span>
+              <div className="iconButton">
+                <Globe size={13} />
+              </div>
+            </a>
+          )}
         </div>
         
         <div className="flex gap-2">
@@ -704,6 +706,7 @@ const App = () => {
       icon: Code2,
       impact: "Manages 50+ businesses with real-time analytics",
       githubUrl: "https://github.com/harish200522/POS-System",
+      liveUrl: "https://possystemapp.netlify.app",
       sampleImages: sampleImagesByFolder['image4']?.length ? sampleImagesByFolder['image4'] : [heroImage]
     },
     {
@@ -713,6 +716,7 @@ const App = () => {
       icon: LayoutGrid,
       impact: "Deployed to production with 99.9% uptime",
       githubUrl: "https://github.com/harish200522/catalogue",
+      liveUrl: "https://inoutcatalogue.netlify.app",
       sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
     }
   ];
