@@ -273,15 +273,28 @@ const ProjectCard = ({ project, onOpen }) => {
           <p className="text-cyan-400 text-xs font-bold mb-4 italic">💡 {project.impact}</p>
         )}
         
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.slice(0, 3).map((t, i) => (
-            <span key={i} className="px-2 py-1 text-[8px] font-bold uppercase bg-white/5 border border-white/10 rounded-full text-slate-400">
-              {t}
-            </span>
-          ))}
-          {project.tech.length > 3 && (
-            <span className="px-2 py-1 text-[8px] font-bold uppercase text-cyan-400">+{project.tech.length - 3} more</span>
-          )}
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 items-center">
+            {project.tech.slice(0, 3).map((t, i) => (
+              <span key={i} className="px-2 py-1 text-[8px] font-bold uppercase bg-white/5 border border-white/10 rounded-full text-slate-400">
+                {t}
+              </span>
+            ))}
+            {project.tech.length > 3 && (
+              <span className="px-2 py-1 text-[8px] font-bold uppercase text-cyan-400">+{project.tech.length - 3} more</span>
+            )}
+          </div>
+          <a
+            href={project.liveUrl || project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="open-browser-btn"
+          >
+            <span>Open in Browser</span>
+            <div className="iconButton">
+              <Globe size={13} />
+            </div>
+          </a>
         </div>
         
         <div className="flex gap-2">

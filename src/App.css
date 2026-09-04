@@ -292,6 +292,64 @@ a.uiverse-btn-github:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* From Uiverse.io by d4niz - Open in Browser Button */
+.open-browser-btn,
+a.open-browser-btn {
+  background: #7079f0;
+  color: white !important;
+  font-family: inherit;
+  padding: 0.35em 2.5em 0.35em 0.85em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.75em;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.2em -0.4em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.2em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.open-browser-btn .iconButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.65em;
+  width: 1.65em;
+  border-radius: 0.55em;
+  background: #7079f0;
+  box-shadow: 0.1em 0.1em 0.5em 0.1em #7a8cf3;
+  right: 0.25em;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.open-browser-btn:hover,
+a.open-browser-btn:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em #5566c2;
+  color: white !important;
+}
+
+.open-browser-btn:hover .iconButton {
+  transform: translateX(2px);
+  background: #8089f8;
+}
+
+.open-browser-btn:active,
+a.open-browser-btn:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em #5566c2;
+}
+
 @media (max-width: 768px) {
   .btn-secondary {
     padding: 0.4rem 0.8rem;
