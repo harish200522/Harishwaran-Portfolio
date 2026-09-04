@@ -726,7 +726,7 @@ const App = () => {
       icon: LayoutGrid,
       impact: "Deployed to production for real client operations",
       githubUrl: "https://github.com/harish200522/catalogue",
-      liveUrl: "https://inoutcatalogue.netlify.app",
+      liveUrl: "https://vocal-buttercream-06059c.netlify.app",
       sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
     },
     {
