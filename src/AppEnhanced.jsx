@@ -35,13 +35,13 @@ import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import heroImage from './assets/hero.png';
 
 // ==================== IMAGE IMPORTS ====================
-const sampleImageModules = import.meta.glob('./assets/image{1,2,3,4,5}/*.{png,jpg,jpeg,webp,gif}', {
+const sampleImageModules = import.meta.glob('./assets/image{1,2,3,4,5,6,7}/*.{png,jpg,jpeg,webp,gif}', {
   eager: true,
   import: 'default'
 });
 
 const sampleImagesByFolder = Object.entries(sampleImageModules).reduce((acc, [path, url]) => {
-  const match = path.match(/assets\/(image[1-5])\//i);
+  const match = path.match(/assets\/(image[1-7])\//i);
   if (!match) return acc;
   const folder = match[1].toLowerCase();
   if (!acc[folder]) {
@@ -626,7 +626,7 @@ const App = () => {
       githubUrl: "https://github.com/harish200522/catalogue",
       liveUrl: "https://vocal-buttercream-06059c.netlify.app",
       isUnderDevelopment: true,
-      sampleImages: sampleImagesByFolder['image5']?.length ? sampleImagesByFolder['image5'] : [heroImage]
+      sampleImages: sampleImagesByFolder['image6']?.length ? sampleImagesByFolder['image6'] : [heroImage]
     },
     {
       title: "Medical's Landing Page",
@@ -636,7 +636,7 @@ const App = () => {
       impact: "Responsive online presence for local medical business",
       githubUrl: "https://github.com/harish200522/Harishwaran-Portfolio",
       liveUrl: "https://harishwaranmedical.vercel.app",
-      sampleImages: [heroImage]
+      sampleImages: sampleImagesByFolder['image7']?.length ? sampleImagesByFolder['image7'] : [heroImage]
     }
   ];
 
