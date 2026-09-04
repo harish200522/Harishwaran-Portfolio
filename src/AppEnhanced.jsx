@@ -30,7 +30,7 @@ import {
   Linkedin as LinkedinIcon,
   Instagram as InstagramIcon
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import heroImage from './assets/hero.png';
 
@@ -191,25 +191,107 @@ const GlitchName = () => {
   );
 };
 
-// Particle Background
+// Scroll Progress Bar
+const ScrollProgressBar = () => {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 z-[100] origin-left shadow-[0_0_12px_#00bcd4]"
+      style={{ scaleX }}
+    />
+  );
+};
+
+// Moving Infinite Tech Marquee
+const TechMarquee = () => {
+  const marqueeItems = [
+    "Python", "Java", "JavaScript", "SQL", "React", "Node.js", "MySQL", 
+    "MongoDB", "PostgreSQL", "Firebase", "Git", "VS Code", "Vite", "Tailwind CSS"
+  ];
+  return (
+    <div className="overflow-hidden whitespace-nowrap py-4 my-6 relative w-full mask-gradient">
+      <motion.div
+        animate={{ x: ['0%', '-50%'] }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+        className="inline-flex gap-4 items-center"
+      >
+        {[...marqueeItems, ...marqueeItems].map((item, idx) => (
+          <span 
+            key={idx}
+            className="px-4 py-2 bg-white/5 border border-cyan-500/20 rounded-xl text-xs font-semibold text-slate-300 shadow-[0_0_15px_rgba(0,188,212,0.08)] backdrop-blur-md flex items-center gap-2 hover:border-cyan-400 hover:text-cyan-300 transition-all duration-300"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            {item}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+// Particle & Ambient Glow Background
 const ParticleBackground = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Floating Ambient Glow Orbs */}
+      <motion.div 
+        animate={{ 
+          x: [0, 40, -30, 0],
+          y: [0, -50, 20, 0],
+          scale: [1, 1.2, 0.9, 1],
+          opacity: [0.25, 0.45, 0.3, 0.25]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px]"
+      />
+      <motion.div 
+        animate={{ 
+          x: [0, -50, 40, 0],
+          y: [0, 60, -40, 0],
+          scale: [1, 1.15, 0.95, 1],
+          opacity: [0.2, 0.4, 0.25, 0.2]
+        }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-[130px]"
+      />
+      <motion.div 
+        animate={{ 
+          x: [0, 30, -30, 0],
+          y: [0, -40, 40, 0],
+          scale: [1, 1.3, 0.85, 1],
+          opacity: [0.15, 0.35, 0.2, 0.15]
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-32 left-1/3 w-[30rem] h-[30rem] bg-indigo-500/15 rounded-full blur-[140px]"
+      />
+
+      {/* Floating Star/Particle Dots */}
+      {[...Array(25)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+          className="absolute rounded-full bg-cyan-400/40 shadow-[0_0_8px_#00bcd4]"
+          style={{
+            width: Math.random() * 3 + 1 + 'px',
+            height: Math.random() * 3 + 1 + 'px',
+          }}
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            opacity: Math.random() * 0.5 + 0.2
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+            opacity: Math.random() * 0.6 + 0.2
           }}
           animate={{
-            y: -window.innerHeight,
-            opacity: 0
+            y: [null, -800],
+            x: [null, (Math.random() - 0.5) * 150],
+            opacity: [null, 0]
           }}
           transition={{
-            duration: Math.random() * 10 + 20,
+            duration: Math.random() * 12 + 18,
             repeat: Infinity,
             ease: 'linear'
           }}
@@ -698,6 +780,7 @@ const App = () => {
 
   return (
     <div className={`min-h-screen text-[#d1d5db] overflow-x-hidden font-sans transition-colors duration-300 ${isDark ? 'bg-[#121212]' : 'bg-slate-100'}`}>
+      <ScrollProgressBar />
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} isDark={isDark} />
       <ThemeToggle isDark={isDark} onChange={setIsDark} />
       <BackToTopButton isVisible={showBackToTop} onClick={scrollToTop} />
