@@ -746,6 +746,7 @@ const App = () => {
       icon: Globe,
       impact: "Responsive online presence for local medical business",
       githubUrl: "https://github.com/harish200522/Harishwaran-Portfolio",
+      liveUrl: "https://harishwaran-medicals.netlify.app",
       sampleImages: [heroImage]
     }
   ];
