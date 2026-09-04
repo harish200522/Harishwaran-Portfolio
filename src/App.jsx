@@ -127,62 +127,67 @@ const TechMarquee = () => {
 };
 
 // Particle & Ambient Glow Background
-const ParticleBackground = () => {
+const ParticleBackground = React.memo(() => {
+  const particles = React.useMemo(() => {
+    return [...Array(15)].map((_, i) => ({
+      id: i,
+      size: Math.random() * 3 + 1,
+      x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+      y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+      opacity: Math.random() * 0.5 + 0.2,
+      duration: Math.random() * 12 + 18,
+      driftX: (Math.random() - 0.5) * 150
+    }));
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Floating Ambient Glow Orbs */}
+      {/* Floating Ambient Glow Orbs - GPU Accelerated */}
       <motion.div 
         animate={{ 
-          x: [0, 40, -30, 0],
-          y: [0, -50, 20, 0],
-          scale: [1, 1.2, 0.9, 1],
-          opacity: [0.25, 0.45, 0.3, 0.25]
+          x: [0, 30, -20, 0],
+          y: [0, -35, 15, 0],
+          scale: [1, 1.15, 0.9, 1],
+          opacity: [0.2, 0.35, 0.25, 0.2]
         }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-32 -left-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px]"
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/15 rounded-full blur-2xl sm:blur-[120px] will-change-transform"
+        style={{ transform: 'translateZ(0)' }}
       />
       <motion.div 
         animate={{ 
-          x: [0, -50, 40, 0],
-          y: [0, 60, -40, 0],
-          scale: [1, 1.15, 0.95, 1],
-          opacity: [0.2, 0.4, 0.25, 0.2]
+          x: [0, -35, 30, 0],
+          y: [0, 45, -30, 0],
+          scale: [1, 1.1, 0.95, 1],
+          opacity: [0.15, 0.3, 0.2, 0.15]
         }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-[130px]"
-      />
-      <motion.div 
-        animate={{ 
-          x: [0, 30, -30, 0],
-          y: [0, -40, 40, 0],
-          scale: [1, 1.3, 0.85, 1],
-          opacity: [0.15, 0.35, 0.2, 0.15]
-        }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-32 left-1/3 w-[30rem] h-[30rem] bg-indigo-500/15 rounded-full blur-[140px]"
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 -right-32 w-80 sm:w-96 h-80 sm:h-96 bg-blue-600/15 rounded-full blur-2xl sm:blur-[130px] will-change-transform"
+        style={{ transform: 'translateZ(0)' }}
       />
 
       {/* Floating Star/Particle Dots */}
-      {[...Array(25)].map((_, i) => (
+      {particles.map((p) => (
         <motion.div
-          key={i}
-          className="absolute rounded-full bg-cyan-400/40 shadow-[0_0_8px_#00bcd4]"
+          key={p.id}
+          className="absolute rounded-full bg-cyan-400/40 shadow-[0_0_6px_#00bcd4] will-change-transform"
           style={{
-            width: Math.random() * 3 + 1 + 'px',
-            height: Math.random() * 3 + 1 + 'px',
+            width: p.size + 'px',
+            height: p.size + 'px',
+            transform: 'translateZ(0)'
           }}
           initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-            opacity: Math.random() * 0.6 + 0.2
+            x: p.x,
+            y: p.y,
+            opacity: p.opacity
           }}
           animate={{
             y: [null, -800],
-            x: [null, (Math.random() - 0.5) * 150],
+            x: [null, p.driftX],
             opacity: [null, 0]
           }}
           transition={{
-            duration: Math.random() * 12 + 18,
+            duration: p.duration,
             repeat: Infinity,
             ease: 'linear'
           }}
@@ -190,7 +195,7 @@ const ParticleBackground = () => {
       ))}
     </div>
   );
-};
+});
 
 const TypingEffect = ({ words }) => {
   const [index, setIndex] = useState(0);
@@ -673,10 +678,18 @@ const Navbar = ({ activeSection, setActiveSection, isDark }) => {
   const navContainerRef = useRef(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 100;
+          setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -869,24 +882,37 @@ const App = () => {
     }
   ];
 
-  // Scroll listeners & Active Section Observer
+  // Scroll listeners & Active Section Observer with performance optimization
   useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300);
-      setShowBadge(window.scrollY < 150); // Hide badge after scrolling 150px
+    let ticking = false;
 
-      // Determine active section based on scroll position
-      const scrollPosition = window.scrollY + 180;
-      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
-        const item = NAV_ITEMS[i];
-        const element = document.getElementById(item.id);
-        if (element) {
-          const top = element.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(item.id);
-            break;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+
+          const shouldShowBackToTop = currentY > 300;
+          setShowBackToTop((prev) => (prev !== shouldShowBackToTop ? shouldShowBackToTop : prev));
+
+          const shouldShowBadge = currentY < 150;
+          setShowBadge((prev) => (prev !== shouldShowBadge ? shouldShowBadge : prev));
+
+          // Determine active section based on scroll position
+          const scrollPosition = currentY + 180;
+          for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+            const item = NAV_ITEMS[i];
+            const element = document.getElementById(item.id);
+            if (element) {
+              const top = element.offsetTop;
+              if (scrollPosition >= top) {
+                setActiveSection((prev) => (prev !== item.id ? item.id : prev));
+                break;
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

@@ -16,6 +16,18 @@ section {
   body.menu-open {
     overflow-y: hidden;
   }
+
+  /* Optimize heavy backdrop filters on mobile GPUs for smooth 60fps scrolling */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  .backdrop-blur-lg,
+  .backdrop-blur-md {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+  }
 }
 
 .btn-contact {

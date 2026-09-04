@@ -31,8 +31,14 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (min-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -41,6 +47,16 @@ body {
   color: var(--text-secondary);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+}
+
+/* GPU hardware acceleration for fixed/floating overlays */
+nav,
+.back-to-top,
+.will-change-transform {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 h1, h2, h3, h4, h5, h6 {
