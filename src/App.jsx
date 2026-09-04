@@ -290,33 +290,7 @@ const GlitchName = () => {
   );
 };
 
-// Particle Background
-const ParticleBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            opacity: Math.random() * 0.5 + 0.2
-          }}
-          animate={{
-            y: -window.innerHeight,
-            opacity: 0
-          }}
-          transition={{
-            duration: Math.random() * 10 + 20,
-            repeat: Infinity,
-            ease: 'linear'
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+
 
 // Enhanced Project Card
 const ProjectCard = ({ project, onOpen }) => {
@@ -330,7 +304,7 @@ const ProjectCard = ({ project, onOpen }) => {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10"></div>
       
-      <div className="h-full p-6 sm:p-8 bg-[#1a1a1a] border border-white/5 rounded-3xl group-hover:border-cyan-500/30 transition-all duration-500 flex flex-col">
+      <div className="h-full p-5 sm:p-6 bg-[#1a1a1a] border border-white/5 rounded-3xl group-hover:border-cyan-500/30 transition-all duration-500 flex flex-col overflow-hidden">
         <div className="flex items-center justify-between mb-4">
           <project.icon size={32} className="text-cyan-400" />
           {project.isUnderDevelopment && (
@@ -378,7 +352,7 @@ const ProjectCard = ({ project, onOpen }) => {
           )}
         </div>
         
-        <div className="flex items-center gap-2 w-full mt-auto pt-2">
+        <div className="project-card-buttons flex items-center justify-between gap-2.5 w-full mt-auto pt-3">
           <button
             onClick={() => onOpen(project)}
             className="Documents-btn"
@@ -415,7 +389,7 @@ const ProjectCard = ({ project, onOpen }) => {
             rel="noreferrer"
             className="btn-github"
           >
-            <FaGithub size={16} />
+            <FaGithub size={15} />
             <span>View on GitHub</span>
           </a>
         </div>

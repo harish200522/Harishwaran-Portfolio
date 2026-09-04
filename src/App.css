@@ -260,24 +260,37 @@ a.btn-github,
 .uiverse-btn-github,
 a.uiverse-btn-github {
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: calc(50% - 5px);
+  height: 40px;
+  gap: 0.4rem;
   border: none;
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   border-radius: 100px;
   font-weight: 800;
-  place-content: center;
-  padding: 0.75rem 1rem;
-  font-size: 0.825rem;
+  padding: 0 10px;
+  font-size: 0.75rem;
   line-height: 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   box-shadow:
     inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   color: #fff !important;
   text-decoration: none;
   white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.btn-github span,
+a.btn-github span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn-github:hover,
@@ -289,7 +302,7 @@ a.uiverse-btn-github:hover {
     inset 0 0 0 1px rgba(252, 232, 3, 0.08);
   color: #fce803 !important;
   transform: translate(0, -0.25rem);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 /* From Uiverse.io by d4niz - Open in Browser Button */
@@ -1731,28 +1744,34 @@ a.open-browser-btn:active {
 }
 
 .Documents-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
-  width: fit-content;
-  height: 45px;
+  justify-content: center;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: calc(50% - 5px);
+  height: 40px;
   border: none;
-  padding: 0px 15px;
-  border-radius: 5px;
+  padding: 0 10px;
+  border-radius: 100px;
   background-color: rgb(49, 49, 83);
-  gap: 10px;
+  gap: 6px;
   cursor: pointer;
   transition: all 0.3s;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .Documents-btn .folderContainer {
-  width: 40px;
+  width: 22px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   position: relative;
+  flex-shrink: 0;
 }
 
 .Documents-btn .fileBack {
@@ -1781,9 +1800,12 @@ a.open-browser-btn:active {
 
 .Documents-btn .text {
   color: white;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Documents-btn:hover .filePage {
