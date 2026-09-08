@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harishwaran-portfolio.vercel.app/sitemap.xml
