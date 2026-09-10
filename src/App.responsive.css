@@ -531,10 +531,10 @@ p, .description {
   .project-actions {
     display: flex !important;
     flex-direction: row !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    gap: 8px !important;
+    gap: 6px !important;
     width: 100%;
   }
 
@@ -542,19 +542,29 @@ p, .description {
   .project-actions .visit-live-3d-btn {
     width: auto !important;
     max-width: fit-content !important;
-    flex: none !important;
+    flex: 0 1 auto !important;
     margin-top: 0 !important;
   }
 
   .Documents-btn {
     height: 36px !important;
-    padding: 0 14px !important;
-    font-size: 9px !important;
+    padding: 0 10px !important;
+    font-size: 8.5px !important;
+    gap: 6px !important;
+  }
+
+  .Documents-btn .text {
+    white-space: nowrap !important;
   }
 
   .visit-live-3d-btn {
-    padding: 8px 14px !important;
-    font-size: 9px !important;
+    padding: 8px 10px !important;
+    font-size: 8.5px !important;
+    gap: 6px !important;
+  }
+
+  .visit-live-3d-btn .live-btn-text {
+    white-space: nowrap !important;
   }
 }
 
