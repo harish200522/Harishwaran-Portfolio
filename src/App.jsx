@@ -37,7 +37,6 @@ function ContactForm() {
 }
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   useEffect(() => {
@@ -45,14 +44,12 @@ function App() {
     document.querySelectorAll('.fade-up').forEach((node) => observer.observe(node));
     return () => observer.disconnect();
   }, []);
-  const closeMenu = () => setMenuOpen(false);
   return <main>
     <nav className="site-nav">
-      <a className="brand" href="#top" onClick={closeMenu}>HARISHWARAN V S</a>
-      <button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon icon="solar:hamburger-menu-linear" /></button>
-      <div className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-        {navItems.map(([label, id]) => <a key={id} href={`#${id}`} className="nav-link" onClick={closeMenu}>{label}</a>)}
-        <a href="/resume.pdf" className="nav-link" onClick={closeMenu} download>Resume</a>
+      <a className="brand" href="#top">HARISHWARAN V S</a>
+      <div className="nav-links">
+        {navItems.map(([label, id]) => <a key={id} href={`#${id}`} className="nav-link">{label}</a>)}
+        <a href="/resume.pdf" className="nav-link" download>Resume</a>
       </div>
     </nav>
     <section id="top" className="hero section-shell">

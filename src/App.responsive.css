@@ -216,23 +216,49 @@ section {
 
 /* ==================== NAVBAR RESPONSIVE ==================== */
 
+.menu-toggle {
+  display: none !important;
+}
+
+.nav-links {
+  display: flex !important;
+  position: static !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 24px;
+}
+
 @media (max-width: 768px) {
-  .navbar-nav {
-    gap: 0.5rem;
-    padding: 0.25rem;
+  .site-nav {
+    padding: 14px 20px !important;
+    min-height: auto !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
   }
   
-  .nav-item {
-    padding: 0.375rem 0.75rem;
-    font-size: 10px;
-    letter-spacing: 0.1em;
+  .nav-links {
+    gap: 14px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .nav-link {
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-item {
-    padding: 0.25rem 0.5rem;
-    font-size: 9px;
+  .site-nav {
+    padding: 12px 14px !important;
+  }
+
+  .nav-links {
+    gap: 10px !important;
+  }
+
+  .nav-link {
+    font-size: 10px !important;
+    letter-spacing: 0.05em !important;
   }
 }
 
