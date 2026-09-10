@@ -120,7 +120,7 @@ function App() {
     </nav>
     <section id="top" className="hero section-shell">
       <div className="hero-copy fade-up"><p className="eyebrow"><Icon icon="solar:map-point-bold-duotone" className="hero-location-icon" /> Karur, Tamil Nadu, India · Independent Developer</p><h1>Build<br /><em>with intent.</em></h1><p className="hero-subtitle">I turn thoughtful ideas into dependable, human-centred digital experiences.</p><div className="hero-actions"><a className="btn-fill" href="#projects"><span>Explore selected work</span><Icon icon="solar:arrow-right-linear" /></a><a className="btn-outline" href="/resume.pdf" download><Icon icon="solar:document-text-bold-duotone" /><span>Download Resume</span></a></div></div>
-      <div className="hero-visual fade-up"><div className="portrait-ring"><img src={heroPortrait} alt="Portrait of Harishwaran V S" /></div><div className="player-card"><button aria-label="Play introduction"><Icon icon="solar:play-linear" /></button><div><p className="player-label">A QUICK INTRODUCTION</p><div className="progress"><i /></div></div><span>00:35</span></div></div>
+      <div className="hero-visual fade-up"><div className="portrait-ring"><img src={heroPortrait} alt="Portrait of Harishwaran V S" /></div></div>
     </section>
     <section className="tech-banner" aria-label="Technology expertise"><div className="tech-banner-heading"><span>TECH STACK</span><i /></div><div className="ticker"><div className="ticker-track"><TickerContent /><TickerContent /></div></div></section>
     <section id="about" className="about section-shell">
