@@ -529,6 +529,22 @@ a.btn-github svg {
   backdrop-filter: blur(4px);
 }
 
+.dev-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 100px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
+  font: 700 8.5px 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
 .shield-icon {
   font-size: 13px;
   color: #C4562A;
