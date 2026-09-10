@@ -9,7 +9,7 @@
 .btn-outline{font:700 11px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.12em;display:inline-flex;gap:10px;align-items:center;padding:16px 19px;color:#2A1A15;border:1px solid #2A1A15;background:transparent;transition:all .3s ease}
 .btn-outline:hover{background:#2A1A15;color:#F5F0E8}
 .hero-location-icon{color:#C4562A;font-size:14px;vertical-align:-2px;margin-right:4px}
-@media(max-width:800px){.tech-banner-heading{width:min(100% - 32px,600px)}.project-top .github-button{padding:9px;font-size:8px}.contact-section{padding:81px 0}.contact-layout{grid-template-columns:1fr}.contact-fields{grid-template-columns:1fr}.contact-form{padding:23px}.contact-section .cta-wave{font-size:280px;right:-70px;bottom:-95px}.hero-actions{flex-direction:column;align-items:stretch}.btn-outline{justify-content:center}}
+@media(max-width:800px){.tech-banner-heading{width:min(100% - 32px,600px)}.project-top .github-button{padding:9px;font-size:8px}.contact-section{padding:81px 0}.contact-layout{grid-template-columns:1fr}.contact-fields{grid-template-columns:1fr}.contact-form{padding:23px}.contact-section .cta-wave{font-size:280px;right:-70px;bottom:-95px}.hero-actions{flex-direction:column;align-items:flex-start}.btn-fill,.btn-outline{width:fit-content;max-width:100%;justify-content:center}}
 
 /* Keep project visuals unfiltered while retaining readable project metadata. */
 .project-shade{display:none}.project-card{background:#3A241D;border:1px solid rgb(245 240 232 / 13%);min-height:375px}.project-card:hover{background:#482D24}.project-top,.project-bottom{filter:none}.project-bottom h3,.project-bottom p{text-shadow:none}
@@ -565,10 +565,14 @@ a.btn-github svg {
   }
   .hero-actions {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 12px;
   }
   .btn-fill, .btn-outline {
-    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 12px 20px;
   }
 }
 
@@ -609,14 +613,18 @@ a.btn-github svg {
     font-size: 13px;
   }
   .project-actions {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
     gap: 8px;
   }
   .project-actions .Documents-btn,
   .project-actions .visit-live-3d-btn {
-    width: 100%;
+    width: auto !important;
+    max-width: fit-content !important;
     justify-content: center;
+    margin-top: 0;
   }
   .Documents-btn {
     height: 36px;

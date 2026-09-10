@@ -509,3 +509,52 @@ p, .description {
     max-width: 65ch;
   }
 }
+
+/* ==================== MOBILE BUTTON SIZING FIX ==================== */
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    width: 100%;
+  }
+
+  .hero-actions .btn-fill,
+  .hero-actions .btn-outline {
+    width: fit-content !important;
+    max-width: 100% !important;
+    padding: 11px 18px !important;
+    font-size: 10px !important;
+  }
+
+  .project-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  .project-actions .Documents-btn,
+  .project-actions .visit-live-3d-btn {
+    width: auto !important;
+    max-width: fit-content !important;
+    flex: none !important;
+    margin-top: 0 !important;
+  }
+
+  .Documents-btn {
+    height: 36px !important;
+    padding: 0 14px !important;
+    font-size: 9px !important;
+  }
+
+  .visit-live-3d-btn {
+    padding: 8px 14px !important;
+    font-size: 9px !important;
+  }
+}
+
