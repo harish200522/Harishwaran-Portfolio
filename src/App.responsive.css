@@ -565,7 +565,8 @@ p, .description {
   }
 
   .project-actions .Documents-btn,
-  .project-actions .visit-live-3d-btn {
+  .project-actions .visit-live-3d-btn,
+  .project-actions .uiverse-live-btn {
     width: auto !important;
     max-width: fit-content !important;
     flex: 0 1 auto !important;
@@ -583,10 +584,21 @@ p, .description {
     white-space: nowrap !important;
   }
 
-  .visit-live-3d-btn {
-    padding: 8px 10px !important;
+  .uiverse-live-btn {
+    height: 36px !important;
+    padding-left: 10px !important;
+    padding-right: 2px !important;
+  }
+
+  .uiverse-live-btn .live-btn-text {
+    width: auto !important;
     font-size: 8.5px !important;
-    gap: 6px !important;
+    white-space: nowrap !important;
+  }
+
+  .uiverse-live-btn .live-icon-container {
+    width: 32px !important;
+    height: 32px !important;
   }
 
   .visit-live-3d-btn .live-btn-text {

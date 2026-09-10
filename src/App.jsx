@@ -88,61 +88,15 @@ function ProjectGallery({ project, index, onChange, onClose }) {
 }
 
 function VisitLiveButton({ href }) {
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -15;
-    const rotateY = ((x - centerX) / centerX) * 15;
-    e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
-    e.currentTarget.style.setProperty('--x', `${(x / rect.width) * 100}%`);
-    e.currentTarget.style.setProperty('--y', `${(y / rect.height) * 100}%`);
-  };
-
-  const handleMouseOver = (e) => {
-    const target = e.currentTarget;
-    target.style.transform = 'perspective(1000px) rotateX(-10deg) rotateY(8deg) translateZ(25px)';
-    target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), inset 0 3px 6px rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2) inset, 0 0 60px rgba(196,86,42,0.4)';
-    const l1 = target.querySelector('.inner-layer-1'); if (l1) l1.style.opacity = '1';
-    const l2 = target.querySelector('.inner-layer-2'); if (l2) l2.style.opacity = '0.8';
-    const sweep = target.querySelector('.light-sweep'); if (sweep) sweep.style.transform = 'translate(150%, -150%) rotate(45deg)';
-    const depth = target.querySelector('.depth-shadow'); if (depth) depth.style.opacity = '1';
-    const aura = target.querySelector('.aura-glow'); if (aura) aura.style.opacity = '1';
-  };
-
-  const handleMouseOut = (e) => {
-    const target = e.currentTarget;
-    target.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(15px)';
-    target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1) inset';
-    const l1 = target.querySelector('.inner-layer-1'); if (l1) l1.style.opacity = '0.6';
-    const l2 = target.querySelector('.inner-layer-2'); if (l2) l2.style.opacity = '0.4';
-    const sweep = target.querySelector('.light-sweep'); if (sweep) sweep.style.transform = 'translate(-150%, 150%) rotate(45deg)';
-    const depth = target.querySelector('.depth-shadow'); if (depth) depth.style.opacity = '0.5';
-    const aura = target.querySelector('.aura-glow'); if (aura) aura.style.opacity = '0';
-  };
-
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="visit-live-3d-btn"
-      onMouseMove={handleMouseMove}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-    >
-      <div className="btn-base-overlay" />
-      <div className="inner-layer-1" />
-      <div className="inner-layer-2" />
-      <div className="light-sweep" />
-      <div className="top-highlight" />
-      <div className="center-line-highlight" />
-      <div className="depth-shadow" />
-      <Icon icon="solar:arrow-right-linear" className="live-btn-icon" />
-      <span className="live-btn-text">Visit live site</span>
-      <div className="aura-glow" />
+    <a href={href} target="_blank" rel="noreferrer" className="uiverse-live-btn">
+      <span className="live-btn-text">Visit Live Site</span>
+      <span className="live-icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </span>
     </a>
   );
 }
