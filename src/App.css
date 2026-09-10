@@ -793,3 +793,117 @@ a.btn-github svg {
     gap: 10px;
   }
 }
+
+/* Custom Design-Matched Message Sent Popup Modal */
+.popup-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(20, 14, 11, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: popupOverlayFade 0.3s ease-out forwards;
+}
+
+@keyframes popupOverlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.popup-modal-card {
+  position: relative;
+  width: min(440px, calc(100vw - 40px));
+  background: #F5F0E8;
+  border: 2px solid #2A1A15;
+  box-shadow: 12px 12px 0 #2A1A15, 0 25px 60px rgba(0, 0, 0, 0.5);
+  padding: 36px 28px 28px;
+  text-align: center;
+  color: #2A1A15;
+  box-sizing: border-box;
+  animation: popupCardZoom 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popupCardZoom {
+  from { opacity: 0; transform: scale(0.88); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #2A1A15;
+  background: transparent;
+  color: #2A1A15;
+  font-size: 22px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 4px;
+}
+
+.popup-close-btn:hover {
+  background: #C4562A;
+  color: #F5F0E8;
+  border-color: #C4562A;
+}
+
+.popup-icon-shell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(196, 86, 42, 0.1);
+  border: 1px solid rgba(196, 86, 42, 0.25);
+  margin-bottom: 16px;
+}
+
+.popup-icon {
+  font-size: 38px;
+}
+
+.popup-icon.success {
+  color: #C4562A;
+}
+
+.popup-icon.error {
+  color: #e11d48;
+}
+
+.popup-modal-card .eyebrow {
+  margin: 0 0 8px;
+  color: #C4562A;
+  font-weight: 700;
+}
+
+.popup-modal-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  color: #2A1A15;
+}
+
+.popup-body {
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(42, 26, 21, 0.8);
+  margin: 0 0 24px;
+}
+
+.popup-action-btn {
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
+}

@@ -18,23 +18,88 @@ const navItems = [['About', 'about'], ['Projects', 'projects'], ['Principles', '
 function Icon({ icon, className = '' }) { return <iconify-icon icon={icon} class={className} aria-hidden="true" />; }
 function TickerContent() { return <div className="ticker-content"><span>REACT</span><b>•</b><span>AI INTEGRATION</span><b>•</b><span>NODE.JS</span><b>•</b><span>FIREBASE</span><b>•</b><span>POSTGRESQL</span><b>•</b><span>PRODUCT DESIGN</span><b>•</b><span>PYTHON</span><b>•</b></div>; }
 
+function MessagePopupModal({ modal, onClose }) {
+  if (!modal.open) return null;
+  const isSuccess = modal.type === 'success';
+
+  return (
+    <div className="popup-modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="popup-modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="popup-close-btn" onClick={onClose} aria-label="Close notification">×</button>
+        <div className="popup-icon-shell">
+          <Icon
+            icon={isSuccess ? "solar:check-circle-bold-duotone" : "solar:danger-circle-bold-duotone"}
+            className={isSuccess ? "popup-icon success" : "popup-icon error"}
+          />
+        </div>
+        <p className="eyebrow">{isSuccess ? 'CONFIRMATION' : 'ATTENTION'}</p>
+        <h3>{modal.title}</h3>
+        <p className="popup-body">{modal.message}</p>
+        <button className="btn-fill popup-action-btn" onClick={onClose}>
+          <span>{isSuccess ? 'GOT IT, THANK YOU' : 'CLOSE'}</span>
+          <Icon icon="solar:arrow-right-linear" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState('');
+  const [modal, setModal] = useState({ open: false, type: 'success', title: '', message: '' });
+
   const update = (event) => setFormData({ ...formData, [event.target.name]: event.target.value });
   const submit = async (event) => {
     event.preventDefault();
-    setLoading(true); setStatus('');
+    setLoading(true);
     try {
-      const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ access_key: '39f329af-0826-4fca-9ceb-03a898e93fc7', ...formData, from_name: 'Portfolio Visitor', subject: `New message from ${formData.name}` }) });
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '39f329af-0826-4fca-9ceb-03a898e93fc7',
+          ...formData,
+          from_name: 'Portfolio Visitor',
+          subject: `New message from ${formData.name}`
+        })
+      });
       const data = await response.json();
       if (!data.success) throw new Error(data.message);
-      setStatus('Message sent — thank you. I will reply within 24 hours.'); setFormData({ name: '', email: '', message: '' });
-    } catch { setStatus('Could not send the message. Please email me directly at vsharishwaran@gmail.com.'); }
-    finally { setLoading(false); }
+      setModal({
+        open: true,
+        type: 'success',
+        title: 'Message Sent!',
+        message: 'Thank you for reaching out. I have received your message and will get back to you within 24 hours.'
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch {
+      setModal({
+        open: true,
+        type: 'error',
+        title: 'Could Not Send Message',
+        message: 'There was an error sending your message. Please try again or email me directly at vsharishwaran@gmail.com.'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
-  return <form className="contact-form" onSubmit={submit}><div className="contact-fields"><label>Your name<input name="name" value={formData.name} onChange={update} placeholder="e.g. Harishwaran V S" required /></label><label>Your email<input type="email" name="email" value={formData.email} onChange={update} placeholder="yourname@gmail.com" required /></label></div><label>Your message<textarea name="message" value={formData.message} onChange={update} placeholder="Tell me about your project, role, or idea..." required rows="5" /></label>{status && <p className="form-status">{status}</p>}<button className="contact-submit" type="submit" disabled={loading}>{loading ? 'Sending…' : 'Send message'} <Icon icon="solar:arrow-right-linear" /></button></form>;
+
+  return (
+    <>
+      <form className="contact-form" onSubmit={submit}>
+        <div className="contact-fields">
+          <label>Your name<input name="name" value={formData.name} onChange={update} placeholder="e.g. Harishwaran V S" required /></label>
+          <label>Your email<input type="email" name="email" value={formData.email} onChange={update} placeholder="yourname@gmail.com" required /></label>
+        </div>
+        <label>Your message<textarea name="message" value={formData.message} onChange={update} placeholder="Tell me about your project, role, or idea..." required rows="5" /></label>
+        <button className="contact-submit" type="submit" disabled={loading}>
+          {loading ? 'Sending…' : 'Send message'} <Icon icon="solar:arrow-right-linear" />
+        </button>
+      </form>
+      <MessagePopupModal modal={modal} onClose={() => setModal({ ...modal, open: false })} />
+    </>
+  );
 }
 
 function App() {
